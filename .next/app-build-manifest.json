@@ -1,0 +1,31 @@
+{
+  "pages": {
+    "/(dev)/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(dev)/page.js"
+    ],
+    "/(dev)/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/(dev)/layout.css",
+      "static/chunks/app/(dev)/layout.js"
+    ],
+    "/(client)/basket/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(client)/basket/page.js"
+    ],
+    "/(client)/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/(client)/layout.css",
+      "static/chunks/app/(client)/layout.js"
+    ],
+    "/(client)/wishlist/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(client)/wishlist/page.js"
+    ]
+  }
+}
