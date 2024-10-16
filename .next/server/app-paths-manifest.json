@@ -1,5 +1,0 @@
-{
-  "/(dev)/page": "app/(dev)/page.js",
-  "/(client)/basket/page": "app/(client)/basket/page.js",
-  "/(client)/wishlist/page": "app/(client)/wishlist/page.js"
-}
