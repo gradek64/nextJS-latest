@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# GM Basket Wishlist UI
+
+The GM Basket team will be rebuilding Argos wishlist in this repository.
+
+## Who to contact for help
+
+You can drop us a message on the `#dig-argos-basket` Slack channel where someone will respond. If no one has responded then you can get in touch with the Engineering Manager for the team who is Rosie Wardman.
 
 ## Getting Started
 
-First, run the development server:
+See our docs on [getting started](./docs/getting-started.md).
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+### Pages
+
+```
+src/app/{...route}/Page.tsx
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- https://nextjs.org/docs/app/building-your-application/routing
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### App Components
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src/app/ui/{area}
+```
 
-## Learn More
+- Any components that use server actions live in this folder
 
-To learn more about Next.js, take a look at the following resources:
+### Components
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+src/components
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- This is exclusively for dumb components
+- We should aim to use a Fable component instead of creating a new one here
 
-## Deploy on Vercel
+### Tests
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+src/tests/{area}
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- This is where all our Playwright tests live which run against our stubs
+- `/tests/fixture.ts` provides extensions to playwrights functionality such as setting flags and testing analytics
+- Any `*.spec.ts` file in this directory will be picked up by Playwright
