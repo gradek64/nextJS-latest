@@ -26,4 +26,5 @@ jobs:
           sonar-token: ${{ secrets.SONAR_ORG_TOKEN }}
           project-key: 'sainsburys-tech_gm-basket-wishlist-ui_8ed6ab47-2f44-4234-bece-e72497e4951b'
           node-version-file: '.nvmrc'
+          test-command: npm run # update with command after setting up jest and RTL
           packages-token: ${{ secrets.READ_PACKAGES_TOKEN }}
