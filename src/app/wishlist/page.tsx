@@ -3,5 +3,5 @@ export default function Wishlist() {
     <main>
       <h1>Your Wishlist</h1>
     </main>
-  );
+  )
 }
