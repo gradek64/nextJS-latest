@@ -7,6 +7,8 @@
     "build": "next build",
     "start": "next start",
     "--------- LINTING ----------------------": "",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
     "format": "prettier --write \"**/*.{json,md,mjs,js,jsx,ts,tsx,css}\""
   },
   "dependencies": {
@@ -15,16 +17,20 @@
     "react-dom": "^18"
   },
   "devDependencies": {
+    "@eslint/js": "^9.18.0",
     "@ianvs/prettier-plugin-sort-imports": "^4.4.1",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.2.23",
+    "eslint-plugin-react": "^7.37.4",
+    "globals": "^15.14.0",
     "postcss": "^8",
     "prettier": "3.4.2",
     "prettier-plugin-tailwindcss": "^0.6.9",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "typescript": "^5",
+    "typescript-eslint": "^8.21.0"
   }
 }
