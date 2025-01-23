@@ -25,6 +25,7 @@ export default [
       }
     },
     rules: {
+      'no-console': 'error',
       'no-restricted-imports': [
         'error',
         {
