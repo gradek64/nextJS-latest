@@ -1,4 +1,7 @@
 import './globals.css'
+import { ThemeProvider } from '@sainsburys-tech/theme-provider'
+import { Brands } from '../lib/common'
+import { Styles } from './styles'
 
 export default function RootLayout({
   children
@@ -7,7 +10,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body>{children}</body>
+      <head>
+        <meta name='format-detection' content='telephone=no, date=no, email=no, address=no' />
+        <Styles />
+      </head>
+      <body>
+        <ThemeProvider brand={Brands.argos}>{children}</ThemeProvider>
+      </body>
     </html>
   )
 }

@@ -1,3 +1,4 @@
+import plugin from 'tailwindcss/plugin'
 import type { Config } from 'tailwindcss'
 
 const config: Config = {
@@ -5,6 +6,14 @@ const config: Config = {
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}'
+  ],
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  presets: [require('@sainsburys-tech/style/config/tailwind/index.js')],
+  plugins: [
+    // eslint-disable-next-line @typescript-eslint/unbound-method
+    plugin(({ addVariant }) => {
+      addVariant('child', '& > *')
+    })
   ]
 }
 export default config
