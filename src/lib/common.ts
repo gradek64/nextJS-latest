@@ -1,5 +1,6 @@
 export enum Brands {
   argos = 'argos',
-  tu = 'tu',
   habitat = 'habitat'
 }
+
+export const brand: Brands = process.env.BRAND
