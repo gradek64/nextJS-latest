@@ -50,6 +50,7 @@
     "@sainsburys-tech/fable": "^4.4.0",
     "@sainsburys-tech/grid": "^3.1.3",
     "@sainsburys-tech/icons": "^3.3.2",
+    "@sainsburys-tech/nextjs-support": "^0.4.4",
     "@sainsburys-tech/style": "^3.2.0",
     "next": "14.2.23",
     "react": "^18.3.1",
