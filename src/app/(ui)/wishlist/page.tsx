@@ -4,14 +4,15 @@ import ExampleProductCard from '@/app/components/exampleProductCard'
 export default function Wishlist() {
   const exampleProductCards = Array(4)
     .fill(0)
-    .map((item, i) => (
+    .map((_item, index) => (
       <GridItem
         colSpan={{
           lg: 1,
-          md: 1,
-          sm: 1
+          md: 2,
+          sm: 4
         }}
         rowSpan={1}
+        key={index}
       >
         <ExampleProductCard />
       </GridItem>
