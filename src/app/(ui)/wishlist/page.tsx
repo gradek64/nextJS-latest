@@ -2,6 +2,8 @@ import { Container, GridItem, GridWrapper } from '@sainsburys-tech/grid'
 import ExampleProductCard from '@/app/components/exampleProductCard'
 
 export default function Wishlist() {
+  // ignoring sonarqube scan for this example code
+  // BEGIN-NOSCAN
   const exampleProductCards = Array(4)
     .fill(0)
     .map((_item, index) => (
@@ -17,6 +19,7 @@ export default function Wishlist() {
         <ExampleProductCard />
       </GridItem>
     ))
+  // END-NOSCAN
 
   return (
     <main>

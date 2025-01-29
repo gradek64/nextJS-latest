@@ -8,6 +8,10 @@ type GlobalThisWithSSR = typeof globalThis & {
   ssrModule?: { id: string; css: string }[]
 }
 
+type Props = {
+  children: React.ReactNode
+}
+
 const DocumentStylesManager = () => {
   const { ssrModule }: GlobalThisWithSSR = globalThis
   if (!ssrModule) {
@@ -28,7 +32,7 @@ const DocumentStylesManager = () => {
   )
 }
 
-export default function StyleRegistry({ children }: { children: Readonly<React.ReactNode> }) {
+export default function StyleRegistry({ children }: Readonly<Props>) {
   const [styledComponentsStyleSheet] = useState(() => new ServerStyleSheet())
   const isServerInserted = useRef(false)
   useServerInsertedHTML(() => {
