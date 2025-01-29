@@ -3,4 +3,4 @@ export enum Brands {
   habitat = 'habitat'
 }
 
-export const brand: Brands = process.env.BRAND
+export const brand: Brands = process.env.BRAND ?? 'argos'
