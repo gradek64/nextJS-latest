@@ -1,6 +1,5 @@
 import pluginJs from '@eslint/js'
 import pluginReactConfig from 'eslint-plugin-react/configs/recommended.js'
-import pluginYaml from 'eslint-plugin-yaml'
 import globals from 'globals'
 import tseslint from 'typescript-eslint'
 
@@ -19,7 +18,6 @@ export default [
   pluginJs.configs.recommended,
   ...tseslint.configs.recommendedTypeChecked,
   pluginReactConfig,
-  pluginYaml.configs.recommended,
   {
     settings: {
       react: {

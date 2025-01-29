@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import './globals.css'
 import { Suspense } from 'react'
 import { ThemeProvider } from '@sainsburys-tech/theme-provider'
-import { brand, Brands } from '../lib/common'
+import { brand } from '../lib/common'
 import { Styles } from './styles'
 import { Shell } from '@/app/components/shell'
 import StyleRegistry from '@/lib/registry'

@@ -28,7 +28,7 @@ const DocumentStylesManager = () => {
   )
 }
 
-export default function StyleRegistry({ children }: { children: React.ReactNode }) {
+export default function StyleRegistry({ children }: { children: Readonly<React.ReactNode> }) {
   const [styledComponentsStyleSheet] = useState(() => new ServerStyleSheet())
   const isServerInserted = useRef(false)
   useServerInsertedHTML(() => {

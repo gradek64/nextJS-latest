@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-imports */
 'use client'
 
 import { ThemeProvider } from 'styled-components'
