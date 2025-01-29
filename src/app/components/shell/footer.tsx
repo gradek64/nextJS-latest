@@ -10,13 +10,13 @@ const Footer = ({ brand }: { brand: Brands }) => {
     case Brands.habitat:
       return (
         <ThemeProvider theme={Themes.HabitatTheme}>
-          <BoltFooter brand={brand} />
+          <BoltFooter brand={brand} paypalCreditHidden={false} />
         </ThemeProvider>
       )
     case Brands.argos:
       return (
         <ThemeProvider theme={Themes.ArgosTheme}>
-          <BoltFooter brand={brand} />
+          <BoltFooter brand={brand} paypalCreditHidden={false} />
         </ThemeProvider>
       )
   }
