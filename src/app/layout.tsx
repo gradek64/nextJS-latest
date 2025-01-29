@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import './globals.css'
 import { Suspense } from 'react'
 import { ThemeProvider } from '@sainsburys-tech/theme-provider'

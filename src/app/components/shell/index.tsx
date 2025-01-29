@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { PropsWithChildren } from 'react'
 import Footer from './footer'
 import { brand, Brands } from '@/lib/common'
