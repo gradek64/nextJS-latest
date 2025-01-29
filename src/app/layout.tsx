@@ -1,10 +1,10 @@
 import './globals.css'
 import { Suspense } from 'react'
-import { StylesManager } from '@sainsburys-tech/nextjs-support'
 import { ThemeProvider } from '@sainsburys-tech/theme-provider'
 import { brand, Brands } from '../lib/common'
 import { Styles } from './styles'
 import { Shell } from '@/app/components/shell'
+import StyleRegistry from '@/lib/registry'
 
 export default function RootLayout({
   children
@@ -18,14 +18,13 @@ export default function RootLayout({
         <Styles brand={brand} />
       </head>
       <body>
-        {/* StylesManager is used for SSR fable styles */}
-        <StylesManager>
+        <StyleRegistry>
           <ThemeProvider brand={Brands.argos}>
             <Shell>
               <Suspense>{children}</Suspense>
             </Shell>
           </ThemeProvider>
-        </StylesManager>
+        </StyleRegistry>
       </body>
     </html>
   )
