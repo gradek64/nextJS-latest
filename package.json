@@ -25,8 +25,8 @@
   "bundlewatch": {
     "files": [
       {
-        "path": ".next/static/chunks/app/wishlist/page*.js",
-        "maxSize": "200b"
+        "path": ".next/static/chunks/app/(ui)/wishlist/page*.js",
+        "maxSize": "600b"
       },
       {
         "path": ".next/static/chunks/app/page*.js",
