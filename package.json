@@ -40,15 +40,15 @@
     ]
   },
   "dependencies": {
-    "@sainsburys-tech/bolt": "^13.34.0",
-    "@sainsburys-tech/bolt-footer": "^4.23.8",
+    "@sainsburys-tech/bolt": "^13.35.0",
+    "@sainsburys-tech/bolt-footer": "^4.23.9",
     "@sainsburys-tech/bolt-icons": "^0.22.0",
     "@sainsburys-tech/bolt-vocab-provider": "^0.4.0",
     "@sainsburys-tech/boltui-polyfills": "^3.0.18",
     "@sainsburys-tech/boltui-style": "^11.2.4",
     "@sainsburys-tech/boltui-vendor": "^5.0.18",
     "@sainsburys-tech/design-tokens": "^3.1.0",
-    "@sainsburys-tech/fable": "^4.4.0",
+    "@sainsburys-tech/fable": "^4.4.1",
     "@sainsburys-tech/grid": "^3.1.3",
     "@sainsburys-tech/icons": "^3.3.2",
     "@sainsburys-tech/style": "^3.2.0",
@@ -58,25 +58,25 @@
     "styled-components": "5.3.1"
   },
   "devDependencies": {
-    "@eslint/js": "^9.17.0",
+    "@eslint/js": "^9.19.0",
     "@ianvs/prettier-plugin-sort-imports": "^4.4.1",
     "@next/bundle-analyzer": "^15.1.6",
-    "@types/node": "^22.10.2",
+    "@types/node": "^22.12.0",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@types/styled-components": "^5.1.34",
     "bundlewatch": "^0.4.0",
-    "eslint": "^8.57.0",
-    "eslint-config-next": "14.2.23",
+    "eslint": "^9.19.0",
+    "eslint-config-next": "15.1.6",
     "eslint-plugin-react": "^7.37.4",
     "eslint-plugin-yaml": "^1.0.3",
     "globals": "^15.14.0",
     "husky": "^9.1.7",
-    "postcss": "^8.4.49",
+    "postcss": "^8.5.1",
     "prettier": "3.4.2",
-    "prettier-plugin-tailwindcss": "^0.6.9",
+    "prettier-plugin-tailwindcss": "^0.6.11",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5.7.2",
-    "typescript-eslint": "^8.21.0"
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.22.0"
   }
 }
