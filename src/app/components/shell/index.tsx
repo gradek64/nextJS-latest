@@ -1,6 +1,7 @@
 import { PropsWithChildren } from 'react'
 import Footer from './footer'
 import { brand, Brands } from '@/lib/common'
+import './bolt.module.css'
 
 const boltClasses = {
   [Brands.argos]: 'bolt-v2',

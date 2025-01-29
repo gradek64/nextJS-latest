@@ -3,14 +3,9 @@
 import '@sainsburys-tech/design-tokens/dist/global/css/local/tokens.css'
 import '@sainsburys-tech/design-tokens/dist/argos/css/local/tokens.css'
 import '@sainsburys-tech/design-tokens/dist/habitat/css/local/tokens.css'
-import dynamic from 'next/dynamic'
 import { Brands } from '../lib/common'
 
-const Noop = () => undefined
-const ArgosBolt = dynamic(() => import('@sainsburys-tech/boltui-style/dist/bolt-argos.min.css').then(() => Noop))
-const HabitatBolt = dynamic(() => import('@sainsburys-tech/boltui-style/dist/bolt-habitat.min.css').then(() => Noop))
-
-const Argos = ({ bolt }: { bolt?: boolean }) => {
+const Argos = () => {
   return (
     <>
       <link
@@ -27,12 +22,11 @@ const Argos = ({ bolt }: { bolt?: boolean }) => {
         type='font/woff2'
         crossOrigin='anonymous'
       />
-      {bolt && <ArgosBolt />}
     </>
   )
 }
 
-const Habitat = ({ bolt }: { bolt?: boolean }) => {
+const Habitat = () => {
   return (
     <>
       <link
@@ -49,17 +43,16 @@ const Habitat = ({ bolt }: { bolt?: boolean }) => {
         type='font/woff2'
         crossOrigin='anonymous'
       />
-      {bolt && <HabitatBolt />}
     </>
   )
 }
 
 //set default brand to argos
-export const Styles = ({ brand, bolt = true }: { brand: Brands; bolt?: boolean }) => {
+export const Styles = ({ brand }: { brand: Brands }) => {
   switch (brand) {
     case Brands.argos:
-      return <Argos bolt={bolt} />
+      return <Argos />
     case Brands.habitat:
-      return <Habitat bolt={bolt} />
+      return <Habitat />
   }
 }
