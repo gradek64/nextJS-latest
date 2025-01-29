@@ -19,7 +19,7 @@ export default function RootLayout({
       </head>
       <body>
         <StyleRegistry>
-          <ThemeProvider brand={Brands.argos}>
+          <ThemeProvider brand={brand}>
             <Shell>
               <Suspense>{children}</Suspense>
             </Shell>
