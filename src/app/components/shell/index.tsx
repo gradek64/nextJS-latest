@@ -1,5 +1,4 @@
 import { PropsWithChildren } from 'react'
-// import './bolt.module.css'
 import dynamic from 'next/dynamic'
 import Footer from './footer'
 import { brand, Brands } from '@/lib/common'
