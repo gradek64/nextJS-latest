@@ -1,4 +1,10 @@
 import './globals.css'
+import { Suspense } from 'react'
+import { ThemeProvider } from '@sainsburys-tech/theme-provider'
+import { brand } from '../lib/common'
+import { Styles } from './styles'
+import { Shell } from '@/app/components/shell'
+import StyleRegistry from '@/lib/registry'
 
 export default function RootLayout({
   children
@@ -7,7 +13,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body>{children}</body>
+      <head>
+        <meta name='format-detection' content='telephone=no, date=no, email=no, address=no' />
+        <Styles brand={brand} />
+      </head>
+      <body>
+        <StyleRegistry>
+          <ThemeProvider brand={brand}>
+            <Shell>
+              <Suspense>{children}</Suspense>
+            </Shell>
+          </ThemeProvider>
+        </StyleRegistry>
+      </body>
     </html>
   )
 }
