@@ -1,0 +1,30 @@
+bosun:
+  deployment:
+    config:
+      serviceName: gm-basket-wishlist-ui
+      public: false
+      resources:
+        limits:
+          cpu: '4'
+          memory: 1Gi
+        requests:
+          cpu: '200m'
+          memory: 1Gi
+      container:
+        livenessHealthcheckPath: /api/public/healthcheck
+        livenessInitialDelaySeconds: 5
+        livenessPeriodSeconds: 10
+        livenessTimeoutSeconds: 5
+        livenessFailureThreshold: 5
+        readinessHealthcheckPort: 80
+        readinessHealthcheckPath: /api/public/readycheck
+        readinessInitialDelaySeconds: 5
+        readinessPeriodSeconds: 10
+        readinessTimeoutSeconds: 5
+        readinessFailureThreshold: 2
+        startupHealthcheckPort: 80
+        startupHealthcheckPath: /api/public/healthcheck
+        startupTimeoutSeconds: 5
+        startupInitialDelaySeconds: 5
+        startupPeriodSeconds: 5
+        startupFailureThreshold: 36
