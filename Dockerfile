@@ -32,8 +32,5 @@ COPY --from=builder /build/package.json /app/
 COPY --from=builder /build/package-lock.json /app/
 COPY --from=builder /build/node_modules /app/node_modules
 
-# Clean up sensitive files like .npmrc (if exists)
-RUN rm -f /app/.npmrc
-
 # Set the default command to start the application in production mode
 CMD ["npm", "start"]
