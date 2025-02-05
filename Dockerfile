@@ -1,15 +1,13 @@
 # Builder Stage
 FROM node:22.13.0-alpine AS builder
 
-ARG GITHUB_PACKAGES_AUTH_TOKEN
-
 # Set the working directory inside the container
 WORKDIR /build
 
 # Copy all files to the build container (exclude files listed in .dockerignore)
 COPY . .
 
-RUN npm ci
+RUN --mount=type=secret,id=GITHUB_PACKAGES_AUTH_TOKEN,env=GITHUB_PACKAGES_AUTH_TOKEN npm ci
 
 RUN npm run build
 
