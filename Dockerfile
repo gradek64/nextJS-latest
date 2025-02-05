@@ -31,7 +31,6 @@ COPY --from=builder /build/.next /app/.next
 
 # Copy dependencies from build stage
 COPY --from=builder /build/package.json /app/
-COPY --from=builder /build/package-lock.json /app/
 COPY --from=builder /build/node_modules /app/node_modules
 
 # Set the default command to start the application in production mode
