@@ -32,9 +32,6 @@ COPY --from=builder /build/package.json /app/
 COPY --from=builder /build/package-lock.json /app/
 COPY --from=builder /build/node_modules /app/node_modules
 
-# Copy only the necessary build artifacts to the runtime environment
-COPY --from=builder /build/.next /app/.next
-
 # Clean up sensitive files like .npmrc (if exists)
 RUN rm -f /app/.npmrc
 
