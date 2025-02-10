@@ -46,7 +46,7 @@ jobs:
           job-name: ${{ inputs.job-name }} / deploy
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: Set PR suffix
-        run: echo "DEPLOY_SUFFIX=${{ github.event.pull_request.number }})" >> $GITHUB_ENV
+        run: echo "DEPLOY_SUFFIX=${{ github.event.pull_request.number }}" >> $GITHUB_ENV
       - name: Set named suffix
         if: ${{inputs.suffix != ''}}
         run: echo "DEPLOY_SUFFIX= ${{inputs.suffix}}" >> $GITHUB_ENV
