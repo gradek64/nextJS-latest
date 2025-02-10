@@ -1,0 +1,62 @@
+name: Reusable Deploy
+on:
+  workflow_call:
+    inputs:
+      app-name:
+        description: 'The app name to use for the build step and the image'
+        default: 'gm-basket-wishlist-ui'
+        type: string
+      bosun-config:
+        description: 'The path to the bosun config file'
+        required: true
+        type: string
+      environment:
+        description: 'The environment to deploy to'
+        required: true
+        type: string
+      job-name:
+        description: 'The name of the job'
+        required: true
+        type: string
+      tags:
+        description: 'Comma seperated list of tags to be be applied to the image.'
+        required: true
+        type: string
+      suffix:
+        description: 'The suffix to use for the deploy'
+        default: ''
+        type: string
+    outputs:
+      deploy-url:
+        description: 'The URL of the deployed application'
+        value: ${{ jobs.deploy.outputs.deploy-url }}
+jobs:
+  deploy:
+    runs-on:
+      - self-hosted
+      - deploy
+    steps:
+      - uses: actions/checkout@v4
+      - uses: sainsburys-tech/bosun-actions-setup@v1
+        name: Setup
+        id: setup
+        with:
+          app-name: ${{ inputs.app-name }}
+          config-path: ${{ inputs.bosun-config }}
+          job-name: ${{ inputs.job-name }} / deploy
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Set PR suffix
+        run: echo "DEPLOY_SUFFIX=${{ github.event.pull_request.number }})" >> $GITHUB_ENV
+      - name: Set named suffix
+        if: ${{inputs.suffix != ''}}
+        run: echo "DEPLOY_SUFFIX= ${{inputs.suffix}}" >> $GITHUB_ENV
+      - uses: sainsburys-tech/bosun-actions-deploy@v1
+        id: deploy
+        with:
+          config-path: ${{ inputs.bosun-config }}
+          environment: ${{ inputs.environment }}
+          image-tag: ${{ inputs.tags }}
+          deploy-suffix: ${{ env.DEPLOY_SUFFIX }}
+          pr-number: ${{ github.event.pull_request.number }}
+    outputs:
+      deploy-url: 'https://${{ steps.deploy.outputs.DEPLOYED_URL }}'
