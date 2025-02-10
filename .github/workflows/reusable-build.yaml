@@ -63,7 +63,7 @@ jobs:
           tags: ${{ fromJson(steps.setup.outputs.dockerParams).tags }}
           push: true
           file: ./Dockerfile
-          target: deploy-server
+          target: runtime
           secrets: |
             "GITHUB_PACKAGES_AUTH_TOKEN=${{ secrets.GITHUB_TOKEN }}"
       - id: argos
