@@ -13,8 +13,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build:
-    name: Build
+  code-analysis:
+    name: Code Analysis
     runs-on: ubuntu-latest # update to run on "self-hosted" after bosun onboarding
     timeout-minutes: 20
     env:
@@ -28,3 +28,19 @@ jobs:
           node-version-file: '.nvmrc'
           test-command: npm run # update with command after setting up jest and RTL
           packages-token: ${{ secrets.READ_PACKAGES_TOKEN }}
+  build:
+    uses: ./.github/workflows/reusable-build.yaml
+    with:
+      bosun-config: ./bosun.yaml
+      image-tags: $ECR/$BOSUN_PRODUCT/$BOSUN_APP:$SHORT_SHA-dev
+    secrets: inherit
+
+  deploy-feature-branch:
+    needs: [build]
+    uses: ./.github/workflows/reusable-deploy.yaml
+    with:
+      bosun-config: ./bosun.yaml
+      environment: dev
+      job-name: 'deploy-feature-branch'
+      tags: ${{ needs.build.outputs.tags }}
+    secrets: inherit
