@@ -1,0 +1,26 @@
+name: Undeploy
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: The environment from which to undeploy it
+        required: true
+      deploy-suffix:
+        description: Optional suffix to undeploy (used for previews or sub-environments)
+        required: false
+jobs:
+  undeploy:
+    runs-on:
+      - self-hosted
+      - deploy
+    steps:
+      - run: printenv
+      - uses: actions/checkout@v4
+      - run: echo ${{ github.event.inputs }}
+      - uses: sainsburys-tech/bosun-actions-undeploy@v1
+        name: Undeploy
+        id: Undeploy
+        with:
+          app: 'gm-basket-wishlist-ui'
+          environment: ${{ github.event.inputs.environment }}
+          deploy-suffix: ${{ github.event.inputs.deploy-suffix }}
