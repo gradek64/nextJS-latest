@@ -2,15 +2,9 @@ name: Undeploy
 on:
   workflow_dispatch:
     inputs:
-      app:
-        description: The name of the app to undeploy
-        required: true
       environment:
         description: The environment from which to undeploy it
         required: true
-      clusters-to-undeploy:
-        description: Optional comma-separated list of 'generic' clusters to undeploy (for example "cluster-01,cluster-02"), defaults to all enabled clusters
-        required: false
       deploy-suffix:
         description: Optional suffix to undeploy (used for previews or sub-environments)
         required: false
