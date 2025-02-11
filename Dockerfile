@@ -23,9 +23,9 @@ EXPOSE ${PORT}
 WORKDIR /app
 
 # Create a non-root user and group for running a Next.js application securely
-RUN addgroup --system --gid 1001 nodejs && \
-    adduser --system --uid 1001 nextjs
-USER nextjs
+# RUN addgroup --system --gid 1001 nodejs && \
+#     adduser --system --uid 1001 nextjs
+# USER nextjs
 
 # Copy built Next.js files
 COPY --from=builder /build/.next /app/.next
