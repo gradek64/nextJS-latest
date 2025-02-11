@@ -1,0 +1,15 @@
+version: 2
+updates:
+  - package-ecosystem: 'npm'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+    groups:
+      sainsburys:
+        patterns:
+          - '@sainsburys-tech/*'
+      other:
+        patterns:
+          - '*'
+        exclude-patterns:
+          - '@sainsburys-tech/*'
