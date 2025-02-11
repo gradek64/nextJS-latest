@@ -27,7 +27,6 @@ jobs:
         name: Undeploy
         id: Undeploy
         with:
-          app: ${{ github.event.inputs.app }}
+          app: 'gm-basket-wishlist-ui'
           environment: ${{ github.event.inputs.environment }}
           deploy-suffix: ${{ github.event.inputs.deploy-suffix }}
-          clusters-to-deploy: ${{ github.event.inputs.clusters-to-undeploy }}
