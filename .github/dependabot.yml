@@ -4,12 +4,23 @@ updates:
     directory: '/'
     schedule:
       interval: 'weekly'
+    ignore:
+      - dependency-name: 'styled-components'
+      - dependency-name: 'eslint'
     groups:
       sainsburys:
         patterns:
           - '@sainsburys-tech/*'
+      eslint:
+        patterns:
+          - '*eslint*'
+      next:
+        patterns:
+          - '*react'
+          - '*react-dom'
+          - 'next'
+        exclude-patterns:
+          - '@testing-library/react'
       other:
         patterns:
           - '*'
-        exclude-patterns:
-          - '@sainsburys-tech/*'
