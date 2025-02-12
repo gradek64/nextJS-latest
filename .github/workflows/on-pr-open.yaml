@@ -15,7 +15,9 @@ concurrency:
 jobs:
   code-analysis:
     name: Code Analysis
-    runs-on: ubuntu-latest # update to run on "self-hosted" after bosun onboarding
+    runs-on: 
+      - self-hosted
+      - build
     timeout-minutes: 20
     env:
       GITHUB_PACKAGES_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -28,6 +30,32 @@ jobs:
           node-version-file: '.nvmrc'
           test-command: npm run # update with command after setting up jest and RTL
           packages-token: ${{ secrets.READ_PACKAGES_TOKEN }}
+  code-checks:
+    name: Code Checks
+    runs-on:
+      - self-hosted
+      - build
+    env:
+      GITHUB_PACKAGES_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    timeout-minutes: 10
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Run Linting
+        run: npm run lint
+      
+      - name: Run BundleWatch
+        run: npm run bundlewatch
   build:
     uses: ./.github/workflows/reusable-build.yaml
     with:
@@ -36,7 +64,7 @@ jobs:
     secrets: inherit
 
   deploy-feature-branch:
-    needs: [build]
+    needs: [build, code-checks]
     uses: ./.github/workflows/reusable-deploy.yaml
     with:
       bosun-config: ./bosun.yaml
