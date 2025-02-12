@@ -33,31 +33,7 @@ jobs:
           test-command: npm run # update with command after setting up jest and RTL
           packages-token: ${{ secrets.READ_PACKAGES_TOKEN }}
   code-checks:
-    name: Code Checks
-    runs-on:
-      - self-hosted
-      - build
-    env:
-      GITHUB_PACKAGES_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    timeout-minutes: 10
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version-file: '.nvmrc'
-          cache: 'npm'
-      
-      - name: Install dependencies
-        run: npm ci
-      
-      - name: Run Linting
-        run: npm run lint
-      
-      - name: Run BundleWatch
-        run: npm run bundlewatch
+     uses: ./.github/workflows/code-checks.yaml
   build:
     uses: ./.github/workflows/reusable-build.yaml
     with:
