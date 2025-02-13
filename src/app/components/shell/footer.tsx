@@ -1,13 +1,23 @@
-/* eslint-disable no-restricted-imports */
 'use client'
 
 import { ThemeProvider } from 'styled-components'
-import { Themes } from '@sainsburys-tech/bolt'
+import { Themes } from '@sainsburys-tech/bolt' // eslint-disable-line no-restricted-imports
 import BoltFooter from '@sainsburys-tech/bolt-footer'
 import { Brands } from '@/lib/common'
 
-const Footer = ({ brand }: { brand: Brands }) => {
+const Footer = ({ brand, html }: { brand: Brands; html?: string }) => {
   switch (brand) {
+    case Brands.tu:
+      return (
+        html && (
+          <div
+            data-ui-version='2'
+            data-use-max-width
+            dangerouslySetInnerHTML={{ __html: html }}
+            suppressHydrationWarning
+          ></div>
+        )
+      )
     case Brands.habitat:
       return (
         <ThemeProvider theme={Themes.HabitatTheme}>

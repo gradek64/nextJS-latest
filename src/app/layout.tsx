@@ -1,16 +1,19 @@
 import './globals.css'
 import { Suspense } from 'react'
 import { ThemeProvider } from '@sainsburys-tech/theme-provider'
-import { brand } from '../lib/common'
 import { Styles } from './styles'
 import { Shell } from '@/app/components/shell'
+import { flags } from '@/flags'
+import { computeFlags } from '@/lib/flags/common'
 import StyleRegistry from '@/lib/registry'
 
-export default function RootLayout({
+export default async function RootLayout({
   children
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const computedFlags = await computeFlags(flags)
+  const brand = computedFlags.brand
   return (
     <html lang='en'>
       <head>
