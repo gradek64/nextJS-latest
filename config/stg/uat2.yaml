@@ -5,12 +5,6 @@ resources:
   limits:
     memory: '512Mi'
     cpu: '4'
-replicaCount: 2
-autoscaling:
-  enabled: true
-  minReplicas: 2
-  maxReplicas: 10
-  targetCPUUtilizationPercentage: 75
 envVariables:
   OVERRIDE_FLAGS: 'true'
   SHELL_ENV: 'production'
