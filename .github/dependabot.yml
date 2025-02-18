@@ -15,12 +15,19 @@ updates:
         patterns:
           - '*eslint*'
       next:
-        patterns:
+        # patterns:
+        #   - '*react'
+        #   - '*react-dom'
+        #   - 'next'
+        exclude-patterns:
+          - '@testing-library/react'
+          # ignore all next and react upgrades until we have a solution for Argos header
           - '*react'
           - '*react-dom'
           - 'next'
-        exclude-patterns:
-          - '@testing-library/react'
       other:
         patterns:
           - '*'
+        exclude-patterns:
+          # ignore all tailwind upgrades until Design Systems have upgraded Fable to Tailwind 4
+          - '*tailwindcss*'
