@@ -19,8 +19,16 @@ const brand = flag({
   }
 })
 
+const stub = flag({
+  key: 'stub',
+  description: 'development stub backend',
+  values: [true, false],
+  decide: () => process.env.DEV_STUB === 'true'
+})
+
 export const flags = {
-  [brand.key]: brand
+  [brand.key]: brand,
+  [stub.key]: stub
 }
 
 export type Flags = typeof flags

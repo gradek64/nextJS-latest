@@ -7,6 +7,7 @@ import type { NextRequest } from 'next/server'
 export async function middleware(request: NextRequest) {
   const headers = new Headers(request.headers)
   const brand = await flags.brand()
+  const stub = await flags.stub()
   const brandHeaders = {
     [Brands.argos]: 'arg',
     [Brands.tu]: 'tuc',
@@ -15,6 +16,7 @@ export async function middleware(request: NextRequest) {
   const brandHeader = brandHeaders[brand]
 
   if (brandHeader) headers.set('x-argos-brand', brandHeader)
+  if (stub) headers.set('x-gm-basket-wishlist-stub', 'true')
 
   const redirect = await urlMiddleware(request, flags)
   return (

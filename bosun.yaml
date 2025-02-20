@@ -28,8 +28,8 @@ bosun:
         startupInitialDelaySeconds: 5
         startupPeriodSeconds: 5
         startupFailureThreshold: 36
-      configOverride:
-        dev: config/dev/dev.yaml
-        stg: config/stg/uat2.yaml
-        stg.pt1: config/stg/pt1.yaml
-        prd: config/prd/prd.yaml
+    configOverride:
+      dev: config/dev/dev.yaml
+      stg: config/stg/uat2.yaml
+      stg.pt1: config/stg/pt1.yaml
+      prd: config/prd/prd.yaml

@@ -1,4 +1,5 @@
 import { Button, ButtonGroup, Display1, Display3, Display4, Select } from '@sainsburys-tech/fable'
+import { Container } from '@sainsburys-tech/grid'
 import { config } from './config'
 import { getOverride, setOverride } from '@/lib/flags/common'
 import { nextStorage } from '@/lib/flags/server'
@@ -41,68 +42,70 @@ export default async function Flags() {
     )
   }
   return (
-    <form key={Math.random()} action={submit} className='ds-p-8'>
-      <div className='ds-sticky ds-top-2 ds-flex'>
-        <Display4>Flags</Display4>
-        <ButtonGroup align='right'>
-          <Button formAction={clear} variant='tertiary' colourScheme='monochrome-dark'>
-            Clear
-          </Button>
-          <Button variant='primary' colourScheme='monochrome-dark'>
-            Apply
-          </Button>
-        </ButtonGroup>
-      </div>
-      <div className='ds-my-4 ds-grid ds-place-items-center'>
-        <div>
-          {Object.keys(config).flatMap((group) => {
-            const children = config[group].map(({ key, description, values }) => {
-              const { override, value } = currentValues[key] as { override: string; value: string }
+    <Container size='lg'>
+      <form key={Math.random()} action={submit} className='ds-p-8'>
+        <div className='ds-sticky ds-top-2 ds-flex'>
+          <Display4>Flags</Display4>
+          <ButtonGroup align='right'>
+            <Button formAction={clear} variant='tertiary' colourScheme='monochrome-dark'>
+              Clear
+            </Button>
+            <Button variant='primary' colourScheme='monochrome-dark'>
+              Apply
+            </Button>
+          </ButtonGroup>
+        </div>
+        <div className='ds-my-4 ds-grid ds-place-items-center'>
+          <div>
+            {Object.keys(config).flatMap((group) => {
+              const children = config[group].map(({ key, description, values }) => {
+                const { override, value } = currentValues[key] as { override: string; value: string }
+                return (
+                  <div key={key} className='ds-my-6'>
+                    <a href={`#${key}`}>
+                      <Display1>{key}</Display1>
+                    </a>
+                    <Select
+                      name={key}
+                      key={key}
+                      hasHiddenLabel
+                      label={`${key}`}
+                      defaultValue={`${override}`}
+                      options={[
+                        { label: `Default`, value: defaultValue },
+                        ...values.map((value) => ({ label: `${value as string}`, value: `${value as string}` }))
+                      ]}
+                      supportingText={description}
+                    />
+                    <div>current value: {`${value}`}</div>
+                  </div>
+                )
+              })
               return (
-                <div key={key} className='ds-my-6'>
-                  <a href={`#${key}`}>
-                    <Display1>{key}</Display1>
+                <div key={group}>
+                  <a href={`#${group}`}>
+                    <Display3 className='ds-capitalize'>{group}</Display3>
                   </a>
-                  <Select
-                    name={key}
-                    key={key}
-                    hasHiddenLabel
-                    label={`${key}`}
-                    defaultValue={`${override}`}
-                    options={[
-                      { label: `Default`, value: defaultValue },
-                      ...values.map((value) => ({ label: `${value as string}`, value: `${value as string}` }))
-                    ]}
-                    supportingText={description}
-                  />
-                  <div>current value: {`${value}`}</div>
+                  <div className='ds-max-w-lg'>{children}</div>
+                  <hr aria-orientation='horizontal' className='ds-my-8' />
                 </div>
               )
-            })
-            return (
-              <div key={group}>
-                <a href={`#${group}`}>
-                  <Display3 className='ds-capitalize'>{group}</Display3>
-                </a>
-                <div className='ds-max-w-lg'>{children}</div>
-                <hr aria-orientation='horizontal' className='ds-my-8' />
-              </div>
-            )
-          })}
+            })}
+          </div>
         </div>
-      </div>
-      <Display1>URL</Display1>
-      <pre className='ds-text-wrap'>
-        __flags=
-        {encodeURIComponent(
-          JSON.stringify(currentValues, (_key, value: { value: string; override: string }) => {
-            if (value?.value !== undefined || value?.override !== undefined) {
-              return value?.override
-            }
-            return value
-          })
-        )}
-      </pre>
-    </form>
+        <Display1>URL</Display1>
+        <pre className='ds-text-wrap'>
+          __flags=
+          {encodeURIComponent(
+            JSON.stringify(currentValues, (_key, value: { value: string; override: string }) => {
+              if (value?.value !== undefined || value?.override !== undefined) {
+                return value?.override
+              }
+              return value
+            })
+          )}
+        </pre>
+      </form>
+    </Container>
   )
 }

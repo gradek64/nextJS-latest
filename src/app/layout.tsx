@@ -1,5 +1,6 @@
 import './globals.css'
 import { Suspense } from 'react'
+import { CommonVendorPreLoadScripts, CommonVendorScripts } from '@sainsburys-tech/boltui-vendor'
 import { ThemeProvider } from '@sainsburys-tech/theme-provider'
 import { Styles } from './styles'
 import { Shell } from '@/app/components/shell'
@@ -20,7 +21,9 @@ export default async function RootLayout({
         <meta name='format-detection' content='telephone=no, date=no, email=no, address=no' />
         <Styles brand={brand} />
       </head>
+      <CommonVendorPreLoadScripts react superagent styledComponents />
       <body>
+        <CommonVendorScripts react superagent styledComponents />
         <StyleRegistry>
           <ThemeProvider brand={brand}>
             <Shell>

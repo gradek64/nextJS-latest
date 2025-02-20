@@ -6,5 +6,6 @@ resources:
     memory: '512Mi'
     cpu: '2'
 envVariables:
+  DEV_STUB: 'true'
   OVERRIDE_FLAGS: 'true'
   SHELL_ENV: 'production'
