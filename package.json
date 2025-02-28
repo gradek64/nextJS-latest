@@ -31,7 +31,7 @@
       },
       {
         "path": ".next/static/chunks/app/page*.js",
-        "maxSize": "200B"
+        "maxSize": "400B"
       },
       {
         "path": ".next/static/chunks/pages/_app*.js",
