@@ -1,6 +1,6 @@
 # Getting started
 
-Check you are using the correct version of node in the .nvmrc file.
+Check you are using the correct version of node in the .nvmrc file
 
 ```
 nvm use
