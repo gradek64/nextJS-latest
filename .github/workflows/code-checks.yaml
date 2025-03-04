@@ -25,5 +25,7 @@ jobs:
         run: npm run build
       - name: Run Linting
         run: npm run lint
+      - name: Run Unit tests
+        run: npm run test
       - name: Run BundleWatch
         run: npm run bundlewatch
