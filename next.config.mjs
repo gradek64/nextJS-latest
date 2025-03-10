@@ -20,6 +20,9 @@ const nextConfig = {
     styledComponents: true
   },
   poweredByHeader: false,
+  experimental: {
+    optimizePackageImports: ['@sainsburys-tech/fable'],
+  },
   async rewrites() {
     return {
       fallback: [
