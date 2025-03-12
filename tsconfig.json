@@ -7,6 +7,7 @@
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
+    "target": "es2022",
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -22,6 +23,14 @@
     },
     "types": ["@testing-library/jest-dom", "jest"]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "environment.d.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "environment.d.ts",
+    "src/app/(ui)/wishlist/page.jsx",
+    "src/app/components/exampleProductCard.jsx"
+  ],
   "exclude": ["node_modules"]
 }

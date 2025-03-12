@@ -45,3 +45,6 @@ next-env.d.ts
 
 # newrelic
 newrelic_agent.log
+
+# stub json files
+/src/app/api/stubApp/database/*/**.json

@@ -1,6 +1,6 @@
 import { headers } from 'next/headers'
 import { createOverrides } from './lib/flags/common'
-import { Brands } from '@/lib/common'
+import { Brands, GetWishlistStubResponseType } from '@/lib/common'
 import { flag } from '@/lib/flags/server'
 
 export const brandHeaders = {
@@ -26,9 +26,25 @@ const stub = flag({
   decide: () => process.env.DEV_STUB === 'true'
 })
 
+const wishlistStub = flag({
+  key: 'wishlist-stub',
+  description: 'responses for /wishlist-api',
+  values: Object.values(GetWishlistStubResponseType),
+  decide: () => GetWishlistStubResponseType.HAS_ITEMS
+})
+
+const hasFlagUpdates = flag({
+  key: 'has-flag-updates',
+  description: 'flag updates have been made',
+  values: [true, false],
+  decide: () => false
+})
+
 export const flags = {
   [brand.key]: brand,
-  [stub.key]: stub
+  [stub.key]: stub,
+  [wishlistStub.key]: wishlistStub,
+  [hasFlagUpdates.key]: hasFlagUpdates
 }
 
 export type Flags = typeof flags

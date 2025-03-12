@@ -3,5 +3,5 @@ import { FlagReturnType } from '@/lib/flags/common'
 
 export const config: Record<string, FlagReturnType[]> = {
   general: [flags.brand],
-  stub: [flags.stub]
+  stub: [flags.stub, flags['wishlist-stub']]
 }

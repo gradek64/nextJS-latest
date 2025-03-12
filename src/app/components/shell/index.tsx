@@ -4,14 +4,16 @@ import dynamic from 'next/dynamic'
 import config from './config'
 import Footer from './footer'
 import Header from './header'
+import Propbar from './propbar'
 import { flags } from '@/flags'
 import { Brands } from '@/lib/common'
+import logger from '@/lib/logger'
 
 const CACHE_TIME_IN_SECONDS = 60 * 60 // 1 hour
 
 const propTypesScript = `<script crossorigin src="https://cdn.tu.co.uk/assets/react/prop-types.min.js"></script>`
 
-/* eslint-disable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access, no-console  */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access */
 const getShell = async (brand: Brands) => {
   try {
     const env = process.env.SHELL_ENV ?? 'production'
@@ -47,12 +49,12 @@ const getShell = async (brand: Brands) => {
         }
     }
   } catch (error) {
-    console.error('Error fetching shell')
-    console.error(error)
+    logger.error('Error fetching shell')
+    logger.error(error)
     return null
   }
 }
-/* eslint-enable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access, no-console */
+/* eslint-enable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access */
 
 const boltClasses = {
   [Brands.argos]: 'bolt-v2',
@@ -83,6 +85,7 @@ export const Shell = async ({ children }: PropsWithChildren) => {
       {global && <div dangerouslySetInnerHTML={{ __html: global.html }} suppressHydrationWarning></div>}
       <div className={`${boltClasses[brand]}`}>
         <Header bundle={header.bundle} html={header.html} stylesheet={header.styles} brand={brand} />
+        <Propbar brand={brand} />
       </div>
       <div className='ds-min-h-[50vh]'>{children}</div>
       <div className={`${boltClasses[brand]}`}>

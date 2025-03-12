@@ -13,6 +13,7 @@ declare module '@sainsburys-tech/bolt' {
     HabitatTheme: DefaultTheme
     ArgosTheme: DefaultTheme
   }
+  export const Propbar: React.FC<{ brand: string }>
 }
 
 declare module '*.module.css' {

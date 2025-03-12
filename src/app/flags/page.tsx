@@ -17,6 +17,10 @@ export default async function Flags() {
 
   async function submit(formData: FormData) {
     'use server'
+
+    await setOverride('has-flag-updates', 'true', nextStorage)
+    currentValues['has-flag-updates'] = { override: 'true', value: 'true' }
+
     for (const flag of flatFlags) {
       if (formData.has(flag.key)) {
         let value = formData.get(flag.key)
@@ -29,10 +33,15 @@ export default async function Flags() {
 
   async function clear() {
     'use server'
+
+    await setOverride('has-flag-updates', 'true', nextStorage)
+    currentValues['has-flag-updates'] = { override: 'true', value: 'true' }
+
     for (const flag of flatFlags) {
       await setOverride(flag.key, undefined, nextStorage)
     }
   }
+
   if (process.env.OVERRIDE_FLAGS !== 'true') {
     return (
       <div className='ds-p-8'>
@@ -41,6 +50,7 @@ export default async function Flags() {
       </div>
     )
   }
+
   return (
     <Container size='lg'>
       <form key={Math.random()} action={submit} className='ds-p-8'>
@@ -98,10 +108,11 @@ export default async function Flags() {
           __flags=
           {encodeURIComponent(
             JSON.stringify(currentValues, (_key, value: { value: string; override: string }) => {
-              if (value?.value !== undefined || value?.override !== undefined) {
-                return value?.override
+              const valueWithFlagUpdate = { ...value, 'has-flag-updates': { override: 'true', value: 'true' } }
+              if (valueWithFlagUpdate?.value !== undefined || valueWithFlagUpdate?.override !== undefined) {
+                return valueWithFlagUpdate?.override
               }
-              return value
+              return valueWithFlagUpdate
             })
           )}
         </pre>
