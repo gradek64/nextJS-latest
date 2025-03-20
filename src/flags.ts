@@ -40,11 +40,19 @@ const hasFlagUpdates = flag({
   decide: () => false
 })
 
+const appShell = flag({
+  key: 'app-shell',
+  description: 'show the app shell chrome',
+  values: [true, false],
+  decide: () => true
+})
+
 export const flags = {
   [brand.key]: brand,
   [stub.key]: stub,
   [wishlistStub.key]: wishlistStub,
-  [hasFlagUpdates.key]: hasFlagUpdates
+  [hasFlagUpdates.key]: hasFlagUpdates,
+  [appShell.key]: appShell
 }
 
 export type Flags = typeof flags

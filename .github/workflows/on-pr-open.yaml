@@ -16,8 +16,8 @@ jobs:
   code-analysis:
     name: Code Analysis
     # Skip SonarQube analysis for Dependabot PRs
-    if: github.actor != 'dependabot[bot]' 
-    runs-on: 
+    if: github.actor != 'dependabot[bot]'
+    runs-on:
       - self-hosted
       - build
     timeout-minutes: 20
@@ -33,7 +33,7 @@ jobs:
           test-command: npm run # update with command after setting up jest and RTL
           packages-token: ${{ secrets.READ_PACKAGES_TOKEN }}
   code-checks:
-     uses: ./.github/workflows/code-checks.yaml
+    uses: ./.github/workflows/code-checks.yaml
   build:
     uses: ./.github/workflows/reusable-build.yaml
     with:
@@ -49,4 +49,11 @@ jobs:
       environment: dev
       job-name: 'deploy-feature-branch'
       tags: ${{ needs.build.outputs.tags }}
+    secrets: inherit
+
+  run-playwright:
+    needs: deploy-feature-branch
+    uses: ./.github/workflows/playwright.yaml
+    with:
+      app-base-url: 'https://basket-gm-basket-wishlist-ui-${{ github.event.pull_request.number }}.int.dev.jspaas.uk'
     secrets: inherit

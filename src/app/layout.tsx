@@ -15,20 +15,26 @@ export default async function RootLayout({
 }>) {
   const computedFlags = await computeFlags(flags)
   const brand = computedFlags.brand
+  const appShell = computedFlags['app-shell']
+
   return (
     <html lang='en'>
       <head>
         <meta name='format-detection' content='telephone=no, date=no, email=no, address=no' />
         <Styles brand={brand} />
       </head>
-      <CommonVendorPreLoadScripts react superagent styledComponents />
+      {appShell && <CommonVendorPreLoadScripts react superagent styledComponents />}
       <body>
-        <CommonVendorScripts react superagent styledComponents />
+        {appShell && <CommonVendorScripts react superagent styledComponents />}
         <StyleRegistry>
           <ThemeProvider brand={brand}>
-            <Shell>
+            {appShell ? (
+              <Shell>
+                <Suspense>{children}</Suspense>
+              </Shell>
+            ) : (
               <Suspense>{children}</Suspense>
-            </Shell>
+            )}
           </ThemeProvider>
         </StyleRegistry>
       </body>
