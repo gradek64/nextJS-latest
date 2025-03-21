@@ -2,11 +2,12 @@
 import { test as base, Browser, Page } from '@playwright/test'
 import { flags } from '../helpers/setFlags'
 import { PAGE_URL_WISHLIST } from '../support/constants'
+import { Flags as FlagTypes } from '@/lib/common'
 import { ComputedFlags } from '@/lib/flags/common'
 import type { Flags } from '@/flags'
 
 const defaultFlags = {
-  'app-shell': false
+  [FlagTypes.APP_SHELL]: false
 }
 
 type FlagMap = Partial<ComputedFlags<Flags>>

@@ -5,6 +5,7 @@ import { ThemeProvider } from '@sainsburys-tech/theme-provider'
 import { Styles } from './styles'
 import { Shell } from '@/app/components/shell'
 import { flags } from '@/flags'
+import { Flags as FlagTypes } from '@/lib/common'
 import { computeFlags } from '@/lib/flags/common'
 import StyleRegistry from '@/lib/registry'
 
@@ -15,7 +16,7 @@ export default async function RootLayout({
 }>) {
   const computedFlags = await computeFlags(flags)
   const brand = computedFlags.brand
-  const appShell = computedFlags['app-shell']
+  const appShell = computedFlags[FlagTypes.APP_SHELL]
 
   return (
     <html lang='en'>

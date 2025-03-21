@@ -3,6 +3,20 @@ import { cookies } from 'next/headers'
 import { ApiTypes, CookieTypes } from './interfaces'
 import logger from '@/lib/logger'
 
+const deleteFile = async (filePath: string) => {
+  const databaseDir = getDatabaseDir(ApiTypes.WISHLIST)
+  try {
+    await fs.promises.unlink(databaseDir + filePath)
+    logger.info(`Successfully removed ${filePath}`)
+  } catch (err) {
+    logger.error(`Error removing ${filePath}`, err)
+  }
+}
+
+const daysToMilliseconds = (days: number) => {
+  return days * 24 * 60 * 60 * 1000
+}
+
 export const getDatabaseDir = (api: ApiTypes) => {
   if (process.env.NODE_ENV === 'production') {
     const prodDir = `/tmp/${api}`
@@ -15,22 +29,17 @@ export const getDatabaseDir = (api: ApiTypes) => {
   return `${process.cwd()}/src/app/api/stubApp/database/${api}/`
 }
 
-const deleteFile = async (filePath: string) => {
-  const databaseDir = getDatabaseDir(ApiTypes.WISHLIST)
-  try {
-    await fs.promises.unlink(databaseDir + filePath)
-    logger.info(`Successfully removed ${filePath}`)
-  } catch (err) {
-    logger.error(`Error removing ${filePath}`, err)
-  }
-}
-
-export function createStubCookie() {
+export function getStubCookie() {
   const cookieStore = cookies()
-  if (!cookieStore.get(CookieTypes.STUB_COOKIE)) {
-    const cookieValue = `stub${Date.now()}`
-    cookieStore.set(CookieTypes.STUB_COOKIE, cookieValue)
+  const cookieValue = cookieStore.get(CookieTypes.STUB_COOKIE)?.value
+
+  if (!cookieValue) {
+    const value = `stub${Date.now()}`
+    cookieStore.set(CookieTypes.STUB_COOKIE, value)
+    return value
   }
+
+  return cookieValue
 }
 
 export async function cleanUpJsonFiles(stubCookie: string) {
@@ -58,8 +67,4 @@ export async function cleanUpJsonFiles(stubCookie: string) {
 export function getFiles(api: ApiTypes) {
   const databaseDir = getDatabaseDir(api)
   return fs.readdirSync(databaseDir)
-}
-
-function daysToMilliseconds(days: number) {
-  return days * 24 * 60 * 60 * 1000
 }

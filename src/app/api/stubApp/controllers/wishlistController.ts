@@ -1,45 +1,30 @@
 import { WishlistService } from '../services'
-import { WishlistRepository } from '@/app/api/stubApp/repositories'
 import logger from '@/lib/logger'
 
 export default class WishlistController {
-  private readonly wishlistRepository: WishlistRepository
-  private readonly wishlistService: WishlistService
+  public wishlistService: WishlistService
 
   constructor() {
-    this.wishlistRepository = new WishlistRepository()
     this.wishlistService = new WishlistService()
   }
 
-  public get = async (stubCookie: string) => {
-    return await this.wishlistRepository
-      .read(stubCookie)
-      .then((data) => {
-        if (!data) return { error: 'Error getting wishlist' }
-        return data
-      })
-      .catch((e: Error) => logger.error('error', e.message))
-  }
-
-  public create = async () => {
-    return await this.wishlistService
-      .create()
-      .then((data) => {
-        if (!data) return { error: 'Error creating wishlist' }
-        return data
-      })
-      .catch((e: Error) => logger.error('error', e.message))
+  public get = async () => {
+    try {
+      const response = await this.wishlistService.get()
+      if (!response) logger.error('Error getting wishlist')
+      return response
+    } catch {
+      return { error: 'Error getting wishlist' }
+    }
   }
 
   public destroy = async (id: string) => {
-    return await this.wishlistService
-      .destroy(id)
-      .then((res) => {
-        if (!res) {
-          return { error: 'Error deleting item from wishlist' }
-        }
-        return res
-      })
-      .catch((e: Error) => logger.error('error', e.message))
+    try {
+      const response = await this.wishlistService.destroy(id)
+      if (!response) logger.error('Error deleting item from wishlist')
+      return response
+    } catch {
+      return { error: 'Error deleting item from wishlist' }
+    }
   }
 }

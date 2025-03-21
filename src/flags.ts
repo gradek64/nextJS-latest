@@ -1,6 +1,6 @@
 import { headers } from 'next/headers'
 import { createOverrides } from './lib/flags/common'
-import { Brands, GetWishlistStubResponseType } from '@/lib/common'
+import { Brands, Flags as FlagTypes, GetWishlistStubResponseType } from '@/lib/common'
 import { flag } from '@/lib/flags/server'
 
 export const brandHeaders = {
@@ -9,8 +9,15 @@ export const brandHeaders = {
   tuc: Brands.tu
 } as const
 
+const appShell = flag({
+  key: FlagTypes.APP_SHELL,
+  description: 'show the app shell chrome',
+  values: [true, false],
+  decide: () => true
+})
+
 const brand = flag({
-  key: 'brand',
+  key: FlagTypes.BRAND,
   description: 'override the x-argos-brand header',
   values: Object.values(brandHeaders),
   decide: () => {
@@ -20,39 +27,32 @@ const brand = flag({
 })
 
 const stub = flag({
-  key: 'stub',
+  key: FlagTypes.STUB,
   description: 'development stub backend',
   values: [true, false],
   decide: () => process.env.DEV_STUB === 'true'
 })
 
 const wishlistStub = flag({
-  key: 'wishlist-stub',
+  key: FlagTypes.WISHLIST_STUB,
   description: 'responses for /wishlist-api',
   values: Object.values(GetWishlistStubResponseType),
   decide: () => GetWishlistStubResponseType.HAS_ITEMS
 })
 
 const hasFlagUpdates = flag({
-  key: 'has-flag-updates',
+  key: FlagTypes.HAS_FLAG_UPDATES,
   description: 'flag updates have been made',
   values: [true, false],
   decide: () => false
 })
 
-const appShell = flag({
-  key: 'app-shell',
-  description: 'show the app shell chrome',
-  values: [true, false],
-  decide: () => true
-})
-
 export const flags = {
+  [appShell.key]: appShell,
   [brand.key]: brand,
   [stub.key]: stub,
   [wishlistStub.key]: wishlistStub,
-  [hasFlagUpdates.key]: hasFlagUpdates,
-  [appShell.key]: appShell
+  [hasFlagUpdates.key]: hasFlagUpdates
 }
 
 export type Flags = typeof flags

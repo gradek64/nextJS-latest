@@ -1,8 +1,9 @@
-import { cookies } from 'next/headers'
 import { empty, hasItems } from '@/app/api/stubApp/database/wishlist/datasets/wishlistdata'
+import { cleanUpJsonFiles, getFiles, getStubCookie } from '@/app/api/stubApp/helpers'
+import { ApiTypes } from '@/app/api/stubApp/interfaces'
 import { WishlistRepository } from '@/app/api/stubApp/repositories'
 import { flags } from '@/flags'
-import { GetWishlistStubResponseType } from '@/lib/common'
+import { Flags as FlagTypes, GetWishlistStubResponseType } from '@/lib/common'
 import { setOverride } from '@/lib/flags/common'
 import { nextStorage } from '@/lib/flags/server'
 import type { Item } from '@/app/api/stubApp/interfaces/wishlistTypes'
@@ -14,17 +15,8 @@ export default class WishlistService {
     this.wishlistRepository = new WishlistRepository()
   }
 
-  public create = async () => {
-    // get stubCookie
-    const cookieStore = cookies()
-    const stubCookie = cookieStore.get('stub-cookie')?.value ?? undefined
-    if (!stubCookie) return { error: 'No stub cookie found' }
-
-    // remove update flag after resetting wishlist
-    await setOverride('has-flag-updates', undefined, nextStorage)
-
-    // set stub response
-    const responseType = await flags['wishlist-stub']()
+  private readonly getStubResponse = async () => {
+    const responseType = await flags[FlagTypes.WISHLIST_STUB]()
     let wishlistStub
 
     switch (responseType) {
@@ -38,14 +30,32 @@ export default class WishlistService {
         wishlistStub = { ...hasItems }
     }
 
-    return await this.wishlistRepository.update(wishlistStub, stubCookie)
+    return wishlistStub
+  }
+
+  public get = async () => {
+    const wishlistDatabases = getFiles(ApiTypes.WISHLIST)
+    const stubCookie = getStubCookie()
+
+    const hasFlagUpdates = await flags[FlagTypes.HAS_FLAG_UPDATES]()
+    const hasJsonFile = wishlistDatabases.includes(`${stubCookie}.json`)
+
+    // remove update flag after resetting wishlist
+    await setOverride(FlagTypes.HAS_FLAG_UPDATES, undefined, nextStorage)
+    await cleanUpJsonFiles(stubCookie)
+
+    const wishlistStub = await this.getStubResponse()
+
+    const body =
+      hasJsonFile && !hasFlagUpdates
+        ? await this.wishlistRepository.read(stubCookie)
+        : await this.wishlistRepository.update(wishlistStub, stubCookie)
+
+    return body
   }
 
   public destroy = async (id: string) => {
-    // get stubCookie
-    const cookieStore = cookies()
-    const stubCookie = cookieStore.get('stub-cookie')?.value ?? undefined
-    if (!stubCookie) return { error: 'No stub cookie found' }
+    const stubCookie = getStubCookie()
 
     // filter out item from wishlist
     const wishlistStub = await this.wishlistRepository.read(stubCookie)

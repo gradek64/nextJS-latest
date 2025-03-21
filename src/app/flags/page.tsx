@@ -1,6 +1,7 @@
 import { Button, ButtonGroup, Display1, Display3, Display4, Select } from '@sainsburys-tech/fable'
 import { Container } from '@sainsburys-tech/grid'
 import { config } from './config'
+import { Flags as FlagTypes } from '@/lib/common'
 import { getOverride, setOverride } from '@/lib/flags/common'
 import { nextStorage } from '@/lib/flags/server'
 
@@ -18,8 +19,8 @@ export default async function Flags() {
   async function submit(formData: FormData) {
     'use server'
 
-    await setOverride('has-flag-updates', 'true', nextStorage)
-    currentValues['has-flag-updates'] = { override: 'true', value: 'true' }
+    await setOverride(FlagTypes.HAS_FLAG_UPDATES, 'true', nextStorage)
+    currentValues[FlagTypes.HAS_FLAG_UPDATES] = { override: 'true', value: 'true' }
 
     for (const flag of flatFlags) {
       if (formData.has(flag.key)) {
@@ -34,8 +35,8 @@ export default async function Flags() {
   async function clear() {
     'use server'
 
-    await setOverride('has-flag-updates', 'true', nextStorage)
-    currentValues['has-flag-updates'] = { override: 'true', value: 'true' }
+    await setOverride(FlagTypes.HAS_FLAG_UPDATES, 'true', nextStorage)
+    currentValues[FlagTypes.HAS_FLAG_UPDATES] = { override: 'true', value: 'true' }
 
     for (const flag of flatFlags) {
       await setOverride(flag.key, undefined, nextStorage)

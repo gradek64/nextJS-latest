@@ -21,7 +21,7 @@ const nextConfig = {
   },
   poweredByHeader: false,
   experimental: {
-    optimizePackageImports: ['@sainsburys-tech/fable'],
+    optimizePackageImports: ['@sainsburys-tech/fable']
   },
   async rewrites() {
     return {
