@@ -1,10 +1,18 @@
 name: Undeploy
 on:
+  pull_request:
+    types: [closed]
   workflow_dispatch:
     inputs:
       environment:
         description: The environment from which to undeploy it
         required: true
+        default: 'dev'
+        type: choice
+        options:
+          - dev
+          - stg
+          - prd
       deploy-suffix:
         description: Optional suffix to undeploy (used for previews or sub-environments)
         required: false
@@ -14,13 +22,16 @@ jobs:
       - self-hosted
       - deploy
     steps:
-      - run: printenv
       - uses: actions/checkout@v4
-      - run: echo ${{ github.event.inputs }}
+      - uses: sainsburys-tech/bosun-actions-setup@v1
+        name: Setup
+        id: setup
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          app-name: 'gm-basket-wishlist-ui'
       - uses: sainsburys-tech/bosun-actions-undeploy@v1
         name: Undeploy
-        id: Undeploy
         with:
           app: 'gm-basket-wishlist-ui'
-          environment: ${{ github.event.inputs.environment }}
-          deploy-suffix: ${{ github.event.inputs.deploy-suffix }}
+          environment: ${{ inputs.environment || 'dev' }}
+          deploy-suffix: ${{ inputs.deploy-suffix || github.event.pull_request.number || '' }}
