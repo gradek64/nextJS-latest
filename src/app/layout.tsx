@@ -31,7 +31,7 @@ export default async function RootLayout({
           <ThemeProvider brand={brand}>
             {appShell ? (
               <Shell>
-                <Suspense>{children}</Suspense>
+                <Suspense fallback={<div className='ds-h-screen' />}>{children}</Suspense>
               </Shell>
             ) : (
               <Suspense>{children}</Suspense>

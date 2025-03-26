@@ -1,6 +1,6 @@
 import { Low } from 'lowdb'
 import { JSONFile } from 'lowdb/node'
-import { hasItems } from './wishlist/datasets/wishlistdata'
+import { hasItems } from './wishlist/datasets/wishlistMocks'
 import { getDatabaseDir } from '@/app/api/stubApp/helpers'
 import { ApiTypes } from '@/app/api/stubApp/interfaces/index'
 import { Wishlists } from '@/app/api/stubApp/interfaces/wishlistTypes'

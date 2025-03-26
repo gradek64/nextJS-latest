@@ -28,22 +28,22 @@ const nextConfig = {
       fallback: [
         {
           source: '/webapp/wcs/stores/servlet/GetUserInfo',
-          destination: '/api/mocks/header/webapp/wcs/stores/servlet/GetUserInfo',
+          destination: '/api/mocks/webapp/wcs/stores/servlet/GetUserInfo',
           has: [stubHeader()]
         },
         {
           source: '/basket-api/v1/basket/items/count',
-          destination: '/api/mocks/header/basket-api/v1/basket/items/count',
+          destination: '/api/mocks/basket-api/v1/basket/items/count',
           has: [stubHeader()]
         },
         {
           source: '/cis/refresh',
-          destination: '/api/mocks/header/cis/refresh',
+          destination: '/api/mocks/cis/refresh',
           has: [stubHeader()]
         },
         {
           source: '/wishlist-service/gql-wishlist',
-          destination: '/api/mocks/header/wishlist-service/gql-wishlist',
+          destination: '/api/mocks/wishlist-service/gql-wishlist',
           has: [stubHeader(), brandHeader('arg')]
         },
         {

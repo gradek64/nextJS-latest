@@ -16,7 +16,7 @@ const customJestConfig = {
     '^.+\\.(js|jsx)$': 'babel-jest'
   },
   transformIgnorePatterns: ['/node_modules/(?!lowdb)/', '/node_modules/(?!jose)/', '/node_modules/(?!steno)/'],
-  testPathIgnorePatterns: ['/e2e/']
+  testPathIgnorePatterns: ['<rootDir>/e2e/']
 }
 
 export default createJestConfig(customJestConfig)

@@ -1,9 +1,9 @@
-import { empty, hasItems } from '@/app/api/stubApp/database/wishlist/datasets/wishlistdata'
+import { empty, hasItems } from '@/app/api/stubApp/database/wishlist/datasets/wishlistMocks'
 import { cleanUpJsonFiles, getFiles, getStubCookie } from '@/app/api/stubApp/helpers'
 import { ApiTypes } from '@/app/api/stubApp/interfaces'
 import { WishlistRepository } from '@/app/api/stubApp/repositories'
 import { flags } from '@/flags'
-import { Flags as FlagTypes, GetWishlistStubResponseType } from '@/lib/common'
+import { Flags as FlagTypes, GetWishlistApiStubResponseType } from '@/lib/common'
 import { setOverride } from '@/lib/flags/common'
 import { nextStorage } from '@/lib/flags/server'
 import type { Item } from '@/app/api/stubApp/interfaces/wishlistTypes'
@@ -16,14 +16,14 @@ export default class WishlistService {
   }
 
   private readonly getStubResponse = async () => {
-    const responseType = await flags[FlagTypes.WISHLIST_STUB]()
+    const responseType = await flags[FlagTypes.WISHLIST_API_STUB]()
     let wishlistStub
 
     switch (responseType) {
-      case GetWishlistStubResponseType.EMPTY:
+      case GetWishlistApiStubResponseType.EMPTY:
         wishlistStub = { ...empty }
         break
-      case GetWishlistStubResponseType.HAS_ITEMS:
+      case GetWishlistApiStubResponseType.HAS_ITEMS:
         wishlistStub = { ...hasItems }
         break
       default:

@@ -10,6 +10,10 @@ on:
         description: 'The path to the bosun config file'
         required: true
         type: string
+      bosun-yaml-overrides:
+        description: 'The overrides to apply to bosun config'
+        default: ''
+        type: string
       environment:
         description: 'The environment to deploy to'
         required: true
@@ -58,5 +62,7 @@ jobs:
           image-tag: ${{ inputs.tags }}
           deploy-suffix: ${{ env.DEPLOY_SUFFIX }}
           pr-number: ${{ github.event.pull_request.number }}
+          bosun-yaml-overrides: ${{ inputs.bosun-yaml-overrides }}
+
     outputs:
       deploy-url: 'https://${{ steps.deploy.outputs.DEPLOYED_URL }}'

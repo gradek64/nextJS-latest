@@ -12,6 +12,7 @@ declare global {
     interface ProcessEnv {
       OVERRIDE_FLAGS: 'true' | 'false'
       SHELL_ENV: 'development' | 'staging' | 'production'
+      APP_BASE_URL: string
     }
   }
   type IntlMessages = typeof en

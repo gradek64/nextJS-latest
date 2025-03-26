@@ -1,3 +1,4 @@
+import GetUserInfoService from './getUserInfoService'
 import WishlistService from './wishlistService'
 
-export { WishlistService }
+export { WishlistService, GetUserInfoService }

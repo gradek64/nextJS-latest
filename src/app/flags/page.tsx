@@ -1,15 +1,18 @@
 import { Button, ButtonGroup, Display1, Display3, Display4, Select } from '@sainsburys-tech/fable'
 import { Container } from '@sainsburys-tech/grid'
 import { config } from './config'
+import { flags } from '@/flags'
 import { Flags as FlagTypes } from '@/lib/common'
 import { getOverride, setOverride } from '@/lib/flags/common'
 import { nextStorage } from '@/lib/flags/server'
+import SetWishlistLocalStorage from '@/lib/localWishlist/setWishlist'
 
 const flatFlags = Object.keys(config).flatMap((key) => config[key])
 
 const defaultValue = 'Default'
 
 export default async function Flags() {
+  const wishlistType = await flags[FlagTypes.WISHLIST_LOCAL_STUB]()
   const currentValues: Record<string, { override: unknown; value: unknown }> = {}
 
   for (const flag of flatFlags) {
@@ -54,6 +57,7 @@ export default async function Flags() {
 
   return (
     <Container size='lg'>
+      <SetWishlistLocalStorage wishlistType={wishlistType} />
       <form key={Math.random()} action={submit} className='ds-p-8'>
         <div className='ds-sticky ds-top-2 ds-flex'>
           <Display4>Flags</Display4>
@@ -66,43 +70,38 @@ export default async function Flags() {
             </Button>
           </ButtonGroup>
         </div>
-        <div className='ds-my-4 ds-grid ds-place-items-center'>
-          <div>
-            {Object.keys(config).flatMap((group) => {
-              const children = config[group].map(({ key, description, values }) => {
-                const { override, value } = currentValues[key] as { override: string; value: string }
-                return (
-                  <div key={key} className='ds-my-6'>
-                    <a href={`#${key}`}>
-                      <Display1>{key}</Display1>
-                    </a>
-                    <Select
-                      name={key}
-                      key={key}
-                      hasHiddenLabel
-                      label={`${key}`}
-                      defaultValue={`${override}`}
-                      options={[
-                        { label: `Default`, value: defaultValue },
-                        ...values.map((value) => ({ label: `${value as string}`, value: `${value as string}` }))
-                      ]}
-                      supportingText={description}
-                    />
-                    <div>current value: {`${value}`}</div>
-                  </div>
-                )
-              })
+        <div className='ds-my-4 ds-flex ds-gap-8'>
+          {Object.keys(config).flatMap((group) => {
+            const children = config[group].map(({ key, description, values }) => {
+              const { override, value } = currentValues[key] as { override: string; value: string }
               return (
-                <div key={group}>
-                  <a href={`#${group}`}>
-                    <Display3 className='ds-capitalize'>{group}</Display3>
+                <div key={key} className='ds-my-6'>
+                  <a href={`#${key}`}>
+                    <Display1>{key}</Display1>
                   </a>
-                  <div className='ds-max-w-lg'>{children}</div>
-                  <hr aria-orientation='horizontal' className='ds-my-8' />
+                  <Select
+                    name={key}
+                    key={key}
+                    hasHiddenLabel
+                    label={`${key}`}
+                    defaultValue={`${override}`}
+                    options={[...values.map((value) => ({ label: `${value as string}`, value: `${value as string}` }))]}
+                    supportingText={description}
+                  />
+                  <div>current value: {`${value}`}</div>
                 </div>
               )
-            })}
-          </div>
+            })
+            return (
+              <div key={group}>
+                <a href={`#${group}`}>
+                  <Display3 className='ds-capitalize'>{group}</Display3>
+                </a>
+                <div className='ds-max-w-lg'>{children}</div>
+                <hr aria-orientation='horizontal' className='ds-my-8' />
+              </div>
+            )
+          })}
         </div>
         <Display1>URL</Display1>
         <pre className='ds-text-wrap'>

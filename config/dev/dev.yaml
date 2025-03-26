@@ -9,3 +9,4 @@ envVariables:
   DEV_STUB: 'true'
   OVERRIDE_FLAGS: 'true'
   SHELL_ENV: 'production'
+  APP_BASE_URL: 'https://basket-gm-basket-wishlist-ui.int.dev.jspaas.uk'

@@ -49,6 +49,7 @@ jobs:
       environment: dev
       job-name: 'deploy-feature-branch'
       tags: ${{ needs.build.outputs.tags }}
+      bosun-yaml-overrides: "{bosun: {deployment: {config: {envVariables: {APP_BASE_URL: 'https://basket-gm-basket-wishlist-ui-${{ github.event.pull_request.number }}.int.dev.jspaas.uk'}}}}}"
     secrets: inherit
 
   run-playwright:
