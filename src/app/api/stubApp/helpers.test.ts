@@ -77,21 +77,21 @@ describe('getStubCookie', () => {
     jest.clearAllMocks()
   })
 
-  it('should return existing cookie value if it exists', () => {
+  it('should return existing cookie value if it exists', async () => {
     const existingValue = 'existingStubCookie'
     ;(mockCookieStore.get as jest.Mock).mockReturnValue({ value: existingValue })
 
-    const result = getStubCookie()
+    const result = await getStubCookie()
 
     expect(result).toBe(existingValue)
     expect(mockCookieStore.get).toHaveBeenCalledWith(CookieTypes.STUB_COOKIE)
     expect(mockCookieStore.set).not.toHaveBeenCalled()
   })
 
-  it('should set and return new cookie value if it does not exist', () => {
+  it('should set and return new cookie value if it does not exist', async () => {
     ;(mockCookieStore.get as jest.Mock).mockReturnValue(undefined)
 
-    const result = getStubCookie()
+    const result = await getStubCookie()
 
     expect(result).toMatch(/^stub\d+$/)
     expect(mockCookieStore.get).toHaveBeenCalledWith(CookieTypes.STUB_COOKIE)

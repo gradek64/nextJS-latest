@@ -16,7 +16,7 @@ export const services = async () => {
 
 export const getWcsUserInfoData = async () => {
   const { wcsUserInfo } = await services()
-  const cookiesList = cookies()
+  const cookiesList = await cookies()
   const { data, response } = await wcsUserInfo.GET('/webapp/wcs/stores/servlet/GetUserInfo', {
     headers: {
       Cookie: cookiesList.toString()

@@ -29,8 +29,13 @@ const Header = ({
             <Script
               src={bundle}
               onLoad={() => {
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                 const { component: Component } = globalThis.window.argosHeaderService
-                globalThis.window.ReactDOM.hydrate(<Component />, rootRef.current)
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+                globalThis.window.ReactDOM.hydrate(
+                  globalThis.window.React.createElement(Component, {}),
+                  rootRef.current
+                )
               }}
             />
           )}

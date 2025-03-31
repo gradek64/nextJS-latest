@@ -5,11 +5,11 @@ import { getOverride, OverrideStorage, setOverride } from './common'
 
 export const nextStorage: OverrideStorage = {
   get: async (id: string) => {
-    const cookiesList = await cookies() /* eslint-disable-line @typescript-eslint/await-thenable */
+    const cookiesList = await cookies()
     return cookiesList.get(id)?.value
   },
   set: async (id: string, payload: string) => {
-    const cookiesList = await cookies() /* eslint-disable-line @typescript-eslint/await-thenable */
+    const cookiesList = await cookies()
     cookiesList.set(id, payload, { httpOnly: true })
   }
 }

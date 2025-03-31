@@ -4,7 +4,7 @@ import { configure, render, RenderResult } from '@testing-library/react' // esli
 configure({ testIdAttribute: 'data-test' })
 
 /* https://testing-library.com/docs/react-testing-library/setup */
-const customRender = (ui: ReactElement, { ...renderOptions } = {}): RenderResult => {
+const customRender = (ui: ReactElement<unknown>, { ...renderOptions } = {}): RenderResult => {
   const AllTheProviders = ({ children }: PropsWithChildren<unknown>) => {
     return (
       // providers to be added later on as: react-i18next

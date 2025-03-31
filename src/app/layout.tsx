@@ -1,6 +1,5 @@
 import './globals.css'
 import { Suspense } from 'react'
-import { CommonVendorPreLoadScripts, CommonVendorScripts } from '@sainsburys-tech/boltui-vendor'
 import { ThemeProvider } from '@sainsburys-tech/theme-provider'
 import { Styles } from './styles'
 import { Shell } from '@/app/components/shell'
@@ -23,10 +22,15 @@ export default async function RootLayout({
       <head>
         <meta name='format-detection' content='telephone=no, date=no, email=no, address=no' />
         <Styles brand={brand} />
+        {appShell && (
+          <>
+            <script src='//www.argos.co.uk/assets/common/vendor/5.0.18/commonvendor-react.min.js'></script>
+            <script src='//www.argos.co.uk/assets/common/vendor/5.0.18/commonvendor-superagent.min.js'></script>
+            <script src='//www.argos.co.uk/assets/common/vendor/5.0.18/commonvendor-styledComponents.min.js'></script>
+          </>
+        )}
       </head>
-      {appShell && <CommonVendorPreLoadScripts react superagent styledComponents />}
       <body>
-        {appShell && <CommonVendorScripts react superagent styledComponents />}
         <StyleRegistry>
           <ThemeProvider brand={brand}>
             {appShell ? (

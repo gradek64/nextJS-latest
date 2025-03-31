@@ -19,6 +19,12 @@ const nextConfig = {
   compiler: {
     styledComponents: true
   },
+  logging: {
+    fetches: {
+      fullUrl: true
+    }
+  },
+  devIndicators: process.env.CI === 'true' ? false : { position: 'bottom-left' },
   poweredByHeader: false,
   experimental: {
     optimizePackageImports: ['@sainsburys-tech/fable']

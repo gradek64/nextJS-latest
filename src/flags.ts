@@ -26,8 +26,9 @@ const brand = flag({
   key: FlagTypes.BRAND,
   description: 'override the x-argos-brand header',
   values: Object.values(brandHeaders),
-  decide: () => {
-    const header = headers().get('x-argos-brand') as keyof typeof brandHeaders
+  decide: async () => {
+    const reqHeaders = await headers()
+    const header = reqHeaders.get('x-argos-brand') as keyof typeof brandHeaders
     return brandHeaders[header] ?? brandHeaders.arg
   }
 })

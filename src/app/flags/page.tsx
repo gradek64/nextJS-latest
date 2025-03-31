@@ -23,7 +23,6 @@ export default async function Flags() {
     'use server'
 
     await setOverride(FlagTypes.HAS_FLAG_UPDATES, 'true', nextStorage)
-    currentValues[FlagTypes.HAS_FLAG_UPDATES] = { override: 'true', value: 'true' }
 
     for (const flag of flatFlags) {
       if (formData.has(flag.key)) {
@@ -39,7 +38,6 @@ export default async function Flags() {
     'use server'
 
     await setOverride(FlagTypes.HAS_FLAG_UPDATES, 'true', nextStorage)
-    currentValues[FlagTypes.HAS_FLAG_UPDATES] = { override: 'true', value: 'true' }
 
     for (const flag of flatFlags) {
       await setOverride(flag.key, undefined, nextStorage)

@@ -1,12 +1,9 @@
-import * as ReactDOM from 'react-dom'
-import en from '../../messages/en.json'
-import type * as React from 'react'
-
 declare global {
   interface Window {
-    argosHeaderService: { component: React.ElementType }
-    ReactDOM: typeof ReactDOM
-    digitalData: DigitalData
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    argosHeaderService: { component: any }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    ReactDOM: any
   }
   namespace NodeJS {
     interface ProcessEnv {
@@ -15,5 +12,6 @@ declare global {
       APP_BASE_URL: string
     }
   }
-  type IntlMessages = typeof en
 }
+
+export {}

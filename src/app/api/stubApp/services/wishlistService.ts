@@ -35,7 +35,7 @@ export default class WishlistService {
 
   public get = async () => {
     const wishlistDatabases = getFiles(ApiTypes.WISHLIST)
-    const stubCookie = getStubCookie()
+    const stubCookie = await getStubCookie()
 
     const hasFlagUpdates = await flags[FlagTypes.HAS_FLAG_UPDATES]()
     const hasJsonFile = wishlistDatabases.includes(`${stubCookie}.json`)
@@ -55,7 +55,7 @@ export default class WishlistService {
   }
 
   public destroy = async (id: string) => {
-    const stubCookie = getStubCookie()
+    const stubCookie = await getStubCookie()
 
     // filter out item from wishlist
     const wishlistStub = await this.wishlistRepository.read(stubCookie)

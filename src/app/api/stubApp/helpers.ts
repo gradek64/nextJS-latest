@@ -29,8 +29,8 @@ export const getDatabaseDir = (api: ApiTypes) => {
   return `${process.cwd()}/src/app/api/stubApp/database/${api}/`
 }
 
-export function getStubCookie() {
-  const cookieStore = cookies()
+export async function getStubCookie() {
+  const cookieStore = await cookies()
   const cookieValue = cookieStore.get(CookieTypes.STUB_COOKIE)?.value
 
   if (!cookieValue) {
@@ -57,7 +57,7 @@ export async function cleanUpJsonFiles(stubCookie: string) {
       await deleteFile(file)
 
       if (file === `${stubCookie}.json`) {
-        const cookieStore = cookies()
+        const cookieStore = await cookies()
         cookieStore.delete(CookieTypes.STUB_COOKIE)
       }
     }

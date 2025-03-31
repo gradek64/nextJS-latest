@@ -1,4 +1,3 @@
-declare module '@sainsburys-tech/boltui-vendor'
 declare module '@sainsburys-tech/bolt-footer'
 declare module '@sainsburys-tech/design-tokens/dist/argos/css/tokens.css'
 declare module '@sainsburys-tech/design-tokens/dist/habitat/css/tokens.css'
