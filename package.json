@@ -35,7 +35,7 @@
     "files": [
       {
         "path": ".next/static/chunks/app/(ui)/wishlist/page*.js",
-        "maxSize": "1.5KB"
+        "maxSize": "2KB"
       },
       {
         "path": ".next/static/chunks/app/page*.js",

@@ -22,8 +22,9 @@ EXPOSE ${PORT}
 
 WORKDIR /app
 
-# Copy built Next.js files
+# Copy built Next.js files and config
 COPY --from=builder /build/.next /app/.next
+COPY --from=builder /build/next.config.mjs /app/next.config.mjs
 
 # Copy dependencies from build stage
 COPY --from=builder /build/package.json /app/

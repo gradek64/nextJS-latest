@@ -29,6 +29,15 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ['@sainsburys-tech/fable']
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'media.4rgos.it',
+        pathname: '**',
+      }
+    ]
+  },
   async rewrites() {
     return {
       fallback: [

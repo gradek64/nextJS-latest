@@ -1,0 +1,7 @@
+.landscapeStyles {
+  @apply ds-min-h-19 ds-overflow-hidden ds-rounded-lg ds-object-cover;
+}
+
+.portraitStyles {
+  @apply ds-min-h-37 ds-overflow-hidden ds-rounded-lg ds-object-cover;
+}
