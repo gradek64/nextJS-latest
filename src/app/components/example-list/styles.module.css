@@ -1,0 +1,3 @@
+.productImage {
+  @apply ds-w-full ds-max-w-full ds-object-cover ds-object-center;
+}

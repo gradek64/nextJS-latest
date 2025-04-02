@@ -1,6 +1,6 @@
 import { Skeleton } from '@sainsburys-tech/fable'
 import { GridItem, GridWrapper } from '@sainsburys-tech/grid'
-import SkeletonCard from '@/app/components/productCardSkeleton/productCardSkeleton'
+import SkeletonCard from '@/app/components/product-card-skeleton'
 
 const exampleProductCards = Array(4)
   .fill(0)

@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { Container, GridItem, GridWrapper } from '@sainsburys-tech/grid'
-import { items } from './image-data'
+import { items } from '@/app/components/empty-wishlist/image-data'
 
 const ImageGrid = () => {
   return (

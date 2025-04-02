@@ -5,3 +5,8 @@
 .portraitStyles {
   @apply ds-min-h-37 ds-overflow-hidden ds-rounded-lg ds-object-cover;
 }
+
+.container {
+  @apply ds-mb-8 ds-ml-4 ds-mr-8 ds-mt-4 ds-flex ds-flex-col ds-items-start ds-text-start;
+  @apply md:ds-ml-8 md:ds-items-center md:ds-text-center;
+}

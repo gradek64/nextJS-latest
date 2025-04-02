@@ -1,6 +1,6 @@
-import EmptyWishlist from './emptyWishlist/emptyWishlist'
-import ExampleList from './exampleList/exampleList'
-import GuestWishlist from './guestWishlist/guestWishlist'
-import ProductCardSkeletonList from './productCardSkeleton/productCardSkeletonList'
+import EmptyWishlist from './empty-wishlist'
+import ExampleList from './example-list'
+import GuestWishlist from './guest-wishlist'
+import ProductCardSkeletonList from './product-card-skeleton/product-card-skeleton-list'
 
 export { EmptyWishlist, ExampleList, GuestWishlist, ProductCardSkeletonList }

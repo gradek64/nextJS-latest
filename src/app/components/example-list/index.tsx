@@ -1,5 +1,5 @@
 import { GridItem, GridWrapper } from '@sainsburys-tech/grid'
-import ExampleProductCard from '@/app/components/exampleList/exampleProductCard'
+import ExampleProductCard from '@/app/components/example-list/example-product-card'
 
 const exampleProductCards = Array(4)
   .fill(0)

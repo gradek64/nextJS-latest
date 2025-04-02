@@ -1,6 +1,7 @@
 'use client'
 
 import { ProductCard } from '@sainsburys-tech/fable'
+import styles from '@/app/components/example-list/styles.module.css'
 
 const ExampleProductCard = () => {
   return (
@@ -15,7 +16,7 @@ const ExampleProductCard = () => {
         <div className='ds-max-w-full'>
           <img
             alt='Product Card placeholder'
-            className='ds-w-full ds-max-w-full ds-object-cover ds-object-center'
+            className={styles.productImage}
             src='https://picsum.photos/seed/picsum/200/200'
           />
         </div>

@@ -1,4 +1,4 @@
-import styles from './image-grid.module.css'
+import styles from '@/app/components/empty-wishlist/styles.module.css'
 
 const portraitDimensions = {
   rowSpan: 2,

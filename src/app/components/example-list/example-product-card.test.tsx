@@ -1,6 +1,6 @@
 import { render, screen, userEvent } from '@/lib/@testing-library'
 import '@testing-library/jest-dom'
-import ExampleProductCard from './exampleProductCard'
+import ExampleProductCard from '@/app/components/example-list/example-product-card'
 
 describe('ExampleProductCard', () => {
   it('renders the product card with title and price', () => {

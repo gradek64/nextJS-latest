@@ -1,4 +1,4 @@
-import EmptyWishlist from './emptyWishlist'
+import EmptyWishlist from '.'
 import { render, screen } from '@/lib/@testing-library'
 import '@testing-library/jest-dom'
 
@@ -26,5 +26,10 @@ describe('EmptyWishlist Component', () => {
     render(<EmptyWishlist isLoggedIn={false} />)
     expect(screen.getByText('Start shopping')).toBeInTheDocument()
     expect(screen.getByText('Start shopping')).toHaveAttribute('href', '/')
+  })
+
+  test('renders the image grid', () => {
+    render(<EmptyWishlist isLoggedIn={false} />)
+    expect(screen.getByLabelText('inspiration')).toBeInTheDocument()
   })
 })

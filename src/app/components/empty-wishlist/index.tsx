@@ -1,11 +1,12 @@
 import { Button, Display3 } from '@sainsburys-tech/fable'
-import ImageGrid from '../image-grid'
+import styles from './styles.module.css'
+import ImageGrid from '@/app/components/empty-wishlist/image-grid'
 
 const EmptyWishlist = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
   return (
     <div aria-label='Empty wishlist'>
       <ImageGrid />
-      <div className='ds-m-8 ds-ml-4 ds-mt-4 ds-flex ds-flex-col ds-items-start ds-text-start md:ds-ml-8 md:ds-items-center md:ds-text-center'>
+      <div className={styles.container}>
         <Display3 as='h1' className='ds-mb-2'>
           Save your favourites here.
         </Display3>
