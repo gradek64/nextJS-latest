@@ -15,11 +15,16 @@ const EmptyWishlist = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
         </span>
         <div className='ds-flex ds-gap-4'>
           {!isLoggedIn && (
-            <Button variant='secondary' as='a' href='/account/login' className='!ds-rounded-[8px]'>
+            <Button
+              variant='secondary'
+              as='a'
+              {...(isLoggedIn ? {} : { href: '/account/login' })}
+              className='!ds-rounded-[8px]'
+            >
               Sign in
             </Button>
           )}
-          <Button variant='primary' as='a' href='/' className='!ds-rounded-[8px]'>
+          <Button variant='primary' as='a' {...(isLoggedIn ? {} : { href: '/' })} className='!ds-rounded-[8px]'>
             Start shopping
           </Button>
         </div>
