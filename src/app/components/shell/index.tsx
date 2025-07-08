@@ -1,5 +1,5 @@
 import { PropsWithChildren } from 'react'
-import { unstable_cache as cache, revalidateTag } from 'next/cache'
+import { unstable_cache as cache } from 'next/cache'
 import dynamic from 'next/dynamic'
 import config from './config'
 import Footer from './footer'
@@ -71,7 +71,7 @@ export const Shell = async ({ children }: PropsWithChildren) => {
   const brand = await flags.brand()
   const shell = await getCachedShell(brand)
   if (!shell) {
-    revalidateTag('shell')
+    // revalidateTag('shell')
     return <div>{children}</div>
   }
 
