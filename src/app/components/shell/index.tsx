@@ -1,8 +1,6 @@
 import { PropsWithChildren } from 'react'
 import { unstable_cache as cache } from 'next/cache'
-import dynamic from 'next/dynamic'
 import config from './config'
-import Footer from './footer'
 import Header from './header'
 import Propbar from './propbar'
 import { flags } from '@/flags'
@@ -75,11 +73,7 @@ export const Shell = async ({ children }: PropsWithChildren) => {
     return <div>{children}</div>
   }
 
-  const BoltStyles = dynamic(() =>
-    import(`@sainsburys-tech/boltui-style/dist/bolt-${brand}.min.css`).then(() => () => undefined)
-  )
-
-  const { header, footer, global } = shell
+  const { header, global } = shell
   return (
     <div className='ds-grid'>
       {global && <div dangerouslySetInnerHTML={{ __html: global.html }} suppressHydrationWarning></div>}
@@ -88,10 +82,6 @@ export const Shell = async ({ children }: PropsWithChildren) => {
         <Propbar brand={brand} />
       </div>
       <div className='ds-min-h-[50vh]'>{children}</div>
-      <div className={`${boltClasses[brand]}`}>
-        <Footer html={footer?.html} brand={brand} />
-        <BoltStyles />
-      </div>
     </div>
   )
 }

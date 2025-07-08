@@ -66,6 +66,6 @@ export default [
     }
   },
   {
-    ignores: ['.next/', 'extension', 'playwright-report', 'newrelic.js', '*.mjs', 'test-results']
+    ignores: ['.next/', 'extension', 'playwright-report', 'newrelic.js', '*.mjs', 'test-results', '.yalc/']
   }
 ]

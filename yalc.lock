@@ -1,0 +1,29 @@
+{
+  "version": "v1",
+  "packages": {
+    "@sainsburys-tech/design-tokens": {
+      "version": "3.1.0",
+      "signature": "94d1647b2cd0fa66e694a7f21847f2a3",
+      "file": true,
+      "replaced": "^3.1.0"
+    },
+    "@sainsburys-tech/grid": {
+      "version": "3.1.3",
+      "signature": "08cbfef9c148e9b25bd9202ed91cb234",
+      "file": true,
+      "replaced": "^3.1.3"
+    },
+    "@sainsburys-tech/icons": {
+      "version": "3.3.2",
+      "signature": "0de1a14bb007cd74fd80b1c04b520f25",
+      "file": true,
+      "replaced": "^3.3.2"
+    },
+    "@sainsburys-tech/style": {
+      "version": "3.2.0",
+      "signature": "24577f03498efe4295374623fa56d689",
+      "file": true,
+      "replaced": "^3.2.0"
+    }
+  }
+}

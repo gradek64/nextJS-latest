@@ -78,6 +78,24 @@ const nextConfig = {
         }
       ]
     }
+  },
+
+  // ✅ Add custom Webpack configuration to support `.mjs` and ignore `.yalc/`
+  webpack(config, options) {
+    // Fix for `.mjs` files inside node_modules (e.g., used by symlinked yalc packages)
+    config.module.rules.push({
+      test: /\.mjs$/,
+      include: /node_modules/,
+      type: 'javascript/auto', // allows CommonJS & ESM interop
+    })
+
+    // Optional: Ignore .yalc folder from watch mode (speeds up local dev)
+    config.watchOptions = {
+      ...config.watchOptions,
+      ignored: ['**/.yalc/**'],
+    }
+
+    return config
   }
 }
 
