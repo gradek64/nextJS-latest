@@ -48,3 +48,27 @@ newrelic_agent.log
 
 # stub json files
 /src/app/api/stubApp/database/*/**.json
+
+# Ignore media and binaries
+*.mp4
+*.mov
+*.zip
+*.tar.gz
+*.exe
+*.dmg
+*.iso
+*.dll
+*.7z
+
+# Ignore build and dependency directories
+node_modules/
+dist/
+build/
+.env
+.cache/
+
+# Ignore IDE/editor files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
