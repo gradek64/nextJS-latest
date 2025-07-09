@@ -19,6 +19,7 @@ export default function Index() {
 
       <Display1>Dev only</Display1>
       <Card href='/flags'>Flag overrides</Card>
+      <Card href='/customs-demo'>Customs Component Library Demo</Card>
     </div>
   )
 }
