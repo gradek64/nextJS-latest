@@ -16,7 +16,14 @@ const customJestConfig = {
     '^.+\\.(js|jsx)$': 'babel-jest'
   },
   transformIgnorePatterns: ['/node_modules/(?!lowdb)/', '/node_modules/(?!jose)/', '/node_modules/(?!steno)/'],
-  testPathIgnorePatterns: ['<rootDir>/e2e/']
+  testPathIgnorePatterns: [
+    '<rootDir>/e2e/',
+    '<rootDir>/local-packages/',
+    '<rootDir>/node_modules/',
+    '<rootDir>/.yalc/'
+  ],
+  testMatch: ['<rootDir>/src/**/__tests__/**/*.(ts|tsx|js)', '<rootDir>/src/**/*.(test|spec).(ts|tsx|js)'],
+  modulePathIgnorePatterns: ['<rootDir>/local-packages/', '<rootDir>/e2e/', '<rootDir>/.yalc/']
 }
 
 export default createJestConfig(customJestConfig)

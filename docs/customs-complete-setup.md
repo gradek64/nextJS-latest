@@ -10,7 +10,7 @@ The Customs Component Library is now a fully external, standalone package that c
 /Users/greg.gil/argos/
 ├── customs-component-library/           # ✅ External library (standalone)
 │   ├── src/components/                  # Library source code
-│   ├── dist/                           # Built library files  
+│   ├── dist/                           # Built library files
 │   ├── docs/                           # Library development docs
 │   ├── package.json                    # Library dependencies
 │   └── README.md                       # Library overview
@@ -55,11 +55,13 @@ npm run dev
 ## 🎯 Available Commands
 
 ### Library Development (in customs-component-library)
+
 - `npm run build` - Build the library
 - `npm run dev` - Watch mode development
 - `npm run link` - Create npm link
 
 ### Consumer Project (in training-next-js-copy)
+
 - `npm run setup:customs` - Full setup automation
 - `npm run fix:customs-types` - Fix TypeScript commit issues
 - `npm run dev` - Start Next.js development server
@@ -67,12 +69,14 @@ npm run dev
 ## 📚 Documentation
 
 ### For Consumers (Next.js Project)
+
 - **[Consumer Guide](./docs/customs-consumer-guide.md)** - Complete usage guide
 - **[TypeScript Troubleshooting](./docs/customs-typescript-troubleshooting.md)** - Fix commit failures
 - **[Quick Reference](./docs/customs-quick-reference.md)** - Component APIs
 - **[Setup Guide](./docs/customs-setup-guide.md)** - Installation instructions
 
 ### For Library Developers (Library Project)
+
 - **[Library README](/Users/greg.gil/argos/customs-component-library/README.md)** - Overview
 - **[Build Guide](/Users/greg.gil/argos/customs-component-library/docs/build-guide.md)** - Development setup
 - **[Development Guide](/Users/greg.gil/argos/customs-component-library/docs/development-guide.md)** - Adding components
@@ -80,6 +84,7 @@ npm run dev
 ## 🔧 Common Issues & Solutions
 
 ### TypeScript Commit Failures
+
 ```bash
 # Quick fix
 npm run fix:customs-types
@@ -89,6 +94,7 @@ git commit --no-verify -m "Your message"
 ```
 
 ### Import Errors
+
 ```bash
 # Rebuild and relink library
 cd /Users/greg.gil/argos/customs-component-library
@@ -102,6 +108,7 @@ npm link customs-components
 ```
 
 ### Runtime Errors
+
 - Use `'use client'` directive for components with hooks
 - Wrap components with `<Customs.ThemeProvider>`
 - Ensure library is built: `cd customs-component-library && npm run build`
@@ -116,11 +123,7 @@ import { Customs } from 'customs-components'
 export default function MyPage() {
   return (
     <Customs.ThemeProvider>
-      <Customs.Button 
-        variant="primary" 
-        size="lg"
-        loading={false}
-      >
+      <Customs.Button variant='primary' size='lg' loading={false}>
         Hello World!
       </Customs.Button>
     </Customs.ThemeProvider>

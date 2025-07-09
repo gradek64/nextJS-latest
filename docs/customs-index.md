@@ -5,17 +5,20 @@ The Customs component library has been restructured as a fully external, standal
 ## 📖 Documentation Overview
 
 ### For Component Users
+
 - **[Quick Reference](./customs-quick-reference.md)** - Cheat sheet for common usage
 - **[Setup Guide](./customs-setup-guide.md)** - Getting started
 - **[Usage Guide](./customs-usage.md)** - Detailed examples
 - **[Consumer Guide](./customs-consumer-guide.md)** - Complete documentation
 
 ### For Library Developers
+
 - **[Library README](../../customs-component-library/README.md)** - External library overview
 - **[Build Guide](../../customs-component-library/docs/build-guide.md)** - Building the library
 - **[Development Guide](../../customs-component-library/docs/development-guide.md)** - Contributing to the library
 
 ### Demo & Examples
+
 - **[Demo Page](/customs-demo)** - Live interactive examples
 
 ## 🚀 Quick Start

@@ -7,12 +7,12 @@ When you try to commit changes that use the customs components library, you migh
 ### ❌ Typical Error Messages
 
 ```bash
-src/app/customs-demo/page.tsx(5,28): error TS7016: 
-Could not find declaration file for module 'customs-components'. 
-Try `npm i --save-dev @types/customs-components` if it exists, 
+src/app/customs-demo/page.tsx(5,28): error TS7016:
+Could not find declaration file for module 'customs-components'.
+Try `npm i --save-dev @types/customs-components` if it exists,
 or add a new declaration (.d.ts) file containing `declare module 'customs-components';`
 
-src/app/customs-demo/page.tsx(10,12): error TS2339: 
+src/app/customs-demo/page.tsx(10,12): error TS2339:
 Property 'Button' does not exist on type 'any'.
 ```
 
@@ -70,9 +70,9 @@ declare module 'customs-components' {
     Button: ComponentType<ButtonProps>
     ThemeProvider: ComponentType<ThemeProviderProps>
     useBreakpoint: () => 'mobile' | 'tablet' | 'desktop'
-    useTheme: () => { 
+    useTheme: () => {
       theme: any
-      setTheme: (theme: any) => void 
+      setTheme: (theme: any) => void
     }
   }
 
@@ -89,7 +89,7 @@ Add `skipLibCheck` to your `tsconfig.json`:
 ```json
 {
   "compilerOptions": {
-    "skipLibCheck": true,
+    "skipLibCheck": true
     // ... other options
   }
 }
@@ -167,7 +167,7 @@ import Customs from 'customs-components'
     "skipLibCheck": true
   },
   "include": [
-    "src/types/**/*",
+    "src/types/**/*"
     // ... other includes
   ]
 }
@@ -215,7 +215,7 @@ mkdir -p src/types
 cat > src/types/customs-components.d.ts << 'EOF'
 declare module 'customs-components' {
   import { ReactNode, ComponentType } from 'react'
-  
+
   export interface ButtonProps {
     variant?: 'primary' | 'secondary' | 'accent' | 'outline'
     size?: 'sm' | 'md' | 'lg'
@@ -225,14 +225,14 @@ declare module 'customs-components' {
     children?: ReactNode
     onClick?: () => void
   }
-  
+
   export interface CustomsComponents {
     Button: ComponentType<ButtonProps>
     ThemeProvider: ComponentType<{ children: ReactNode }>
     useBreakpoint: () => 'mobile' | 'tablet' | 'desktop'
     useTheme: () => { theme: any; setTheme: (theme: any) => void }
   }
-  
+
   const Customs: CustomsComponents
   export { Customs }
 }
