@@ -2,16 +2,8 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { Brands } from '@/lib/common'
 
-interface HeaderProps {
-  bundle?: string
-  html?: string
-  stylesheet?: string
-  brand?: Brands
-}
-
-const Header = ({ bundle: _bundle, html: _html, stylesheet: _stylesheet, brand: _brand }: HeaderProps) => {
+const SimpleBlueHeader = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const toggleMenu = () => {
@@ -27,7 +19,7 @@ const Header = ({ bundle: _bundle, html: _html, stylesheet: _stylesheet, brand: 
   ]
 
   return (
-    <nav className='nav-header'>
+    <nav className='nav-header' style={{ position: 'relative' }}>
       <div className='nav-container'>
         <div className='nav-flex'>
           <div className='nav-brand'>
@@ -52,18 +44,62 @@ const Header = ({ bundle: _bundle, html: _html, stylesheet: _stylesheet, brand: 
             </svg>
           </button>
         </div>
-        {isMenuOpen && (
-          <div className='nav-mobile-menu md:ds-hidden'>
+      </div>
+      {isMenuOpen && (
+        <>
+          {/* Backdrop overlay */}
+          <div
+            style={{
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              backgroundColor: 'rgba(0, 0, 0, 0.5)',
+              zIndex: 999
+            }}
+            onClick={() => setIsMenuOpen(false)}
+          />
+
+          <style
+            dangerouslySetInnerHTML={{
+              __html: `
+              @keyframes slideDown {
+                from {
+                  opacity: 0;
+                  transform: translateY(-10px);
+                }
+                to {
+                  opacity: 1;
+                  transform: translateY(0);
+                }
+              }
+            `
+            }}
+          />
+          <div
+            className='nav-mobile-menu md:ds-hidden'
+            style={{
+              position: 'absolute',
+              top: '100%',
+              left: 0,
+              right: 0,
+              backgroundColor: '#2563eb',
+              zIndex: 1000,
+              boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+              animation: 'slideDown 0.2s ease-out'
+            }}
+          >
             {navLinks.map((link) => (
               <Link key={link.href} href={link.href} className='nav-mobile-link' onClick={() => setIsMenuOpen(false)}>
                 {link.label}
               </Link>
             ))}
           </div>
-        )}
-      </div>
+        </>
+      )}
     </nav>
   )
 }
 
-export default Header
+export default SimpleBlueHeader

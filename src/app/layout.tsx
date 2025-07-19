@@ -3,6 +3,7 @@ import { Suspense } from 'react'
 import { ThemeProvider } from '@sainsburys-tech/theme-provider'
 import { Styles } from './styles'
 import { Shell } from '@/app/components/shell'
+import TailwindBlueHeader from '@/app/components/TailwindBlueHeader'
 import { flags } from '@/flags'
 import { Flags as FlagTypes } from '@/lib/common'
 import { computeFlags } from '@/lib/flags/common'
@@ -33,6 +34,7 @@ export default async function RootLayout({
       <body>
         <StyleRegistry>
           <ThemeProvider brand={brand}>
+            <TailwindBlueHeader />
             {appShell ? (
               <Shell>
                 <Suspense fallback={<div className='ds-h-screen' />}>{children}</Suspense>
