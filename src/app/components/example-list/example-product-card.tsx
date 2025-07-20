@@ -1,7 +1,7 @@
 'use client'
 
-import { Customs } from 'customs-components'
 import styles from '@/app/components/example-list/styles.module.css'
+import { Customs } from '@/lib/customs-client'
 
 const ExampleProductCard = () => {
   return (

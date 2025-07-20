@@ -1,6 +1,7 @@
 import { Suspense } from 'react'
 import { Container } from '@sainsburys-tech/grid'
-import { ExampleList, GuestWishlist, ProductCardSkeletonList } from '@/app/components'
+import { GuestWishlist, ProductCardSkeletonList } from '@/app/components'
+import ClientWishlistWrapper from '@/app/components/client-wishlist-wrapper'
 import { getWcsUserInfoData } from '@/lib/request/server'
 
 export default async function Wishlist() {
@@ -10,7 +11,7 @@ export default async function Wishlist() {
   return (
     <Container as='main' size='lg'>
       {isLoggedIn ? (
-        <ExampleList />
+        <ClientWishlistWrapper />
       ) : (
         <Suspense fallback={<ProductCardSkeletonList />}>
           <GuestWishlist />

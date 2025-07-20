@@ -13,7 +13,7 @@ This guide provides step-by-step instructions for setting up the external Custom
 │   ├── dist/                           # Built files (created by npm run build)
 │   ├── package.json                    # Library dependencies
 │   └── node_modules/                   # Library dependencies
-└── training-next-js-copy/               # Next.js consumer project  
+└── training-next-js-copy/               # Next.js consumer project
     ├── src/app/customs-demo/           # Demo page using the library
     ├── node_modules/customs-components/ # Symlink to external library
     ├── scripts/                        # Setup automation scripts
@@ -32,6 +32,7 @@ npm install
 ```
 
 You'll see:
+
 ```
 🤔 Do you want to set up the customs library now? (y/N):
 ```
@@ -119,12 +120,14 @@ npm run dev
 ## 📦 What Each Script Does
 
 ### `npm install` (Automatic)
+
 - Installs all project dependencies
 - **NEW**: Automatically prompts to set up customs library
 - Runs `postinstall` hook that calls `setup:prompt`
 - Gracefully skips if external library is not available
 
 ### `npm run setup:prompt` (Interactive)
+
 - Shows detailed information about what the setup will do
 - Checks if external library exists at the expected location
 - Prompts user with clear y/N option
@@ -132,12 +135,14 @@ npm run dev
 - Handles errors gracefully with clear messages
 
 ### `npm run setup:full` (Automated)
+
 - Runs `setup:customs` (library setup)
 - Runs `fix:customs-types` (TypeScript declarations)
 - No prompts - just runs everything
 - Best for CI/CD or when you know you want full setup
 
 ### `npm run setup:customs` (Library Only)
+
 - Installs dependencies in the external library
 - Builds the library (creates dist/ folder)
 - Creates npm link for the library
@@ -145,6 +150,7 @@ npm run dev
 - Shows success confirmation
 
 ### `npm run fix:customs-types` (TypeScript Only)
+
 - Creates `src/types/customs-components.d.ts` file
 - Provides TypeScript declarations for the customs-components module
 - Prevents TypeScript compilation errors during git commits
@@ -183,11 +189,7 @@ import { Customs } from 'customs-components'
 export default function MyComponent() {
   return (
     <Customs.ThemeProvider>
-      <Customs.Button 
-        variant="primary" 
-        size="lg" 
-        loading={false}
-      >
+      <Customs.Button variant='primary' size='lg' loading={false}>
         Click me!
       </Customs.Button>
     </Customs.ThemeProvider>
@@ -198,21 +200,22 @@ export default function MyComponent() {
 ## ❗ Important Notes
 
 ### Use Client Components
+
 Components that use the customs library need the `'use client'` directive:
 
 ```tsx
-'use client'  // Required for customs components
+'use client'
 
+// Required for customs components
 import { Customs } from 'customs-components'
 ```
 
 ### Always Wrap with ThemeProvider
+
 Customs components need to be wrapped with the theme provider:
 
 ```tsx
-<Customs.ThemeProvider>
-  {/* Your customs components go here */}
-</Customs.ThemeProvider>
+<Customs.ThemeProvider>{/* Your customs components go here */}</Customs.ThemeProvider>
 ```
 
 ## 🛠️ Troubleshooting

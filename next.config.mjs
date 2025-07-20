@@ -26,9 +26,6 @@ const nextConfig = {
   },
   devIndicators: process.env.CI === 'true' ? false : { position: 'bottom-left' },
   poweredByHeader: false,
-  experimental: {
-    optimizePackageImports: ['@sainsburys-tech/fable']
-  },
   images: {
     remotePatterns: [
       {

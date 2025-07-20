@@ -1,11 +1,9 @@
-import { Display1, Display4 } from '@sainsburys-tech/fable'
-
 export default function About() {
   return (
     <div className='ds-container ds-mx-auto ds-px-4 ds-py-8'>
-      <Display4 className='ds-mb-6'>About Our App</Display4>
+      <div className='ds-mb-6'>About Our App</div>
       <div className='ds-max-w-4xl'>
-        <Display1 className='ds-mb-4'>Welcome to our Next.js Application</Display1>
+        <div className='ds-mb-4'>Welcome to our Next.js Application</div>
         <p className='ds-mb-4 ds-text-lg'>
           This is a modern web application built with Next.js 15, featuring a responsive navigation menu and various
           pages to showcase different functionality.

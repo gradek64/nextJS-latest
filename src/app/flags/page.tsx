@@ -1,8 +1,11 @@
-import { Button, ButtonGroup, Display1, Display3, Display4, Select } from '@sainsburys-tech/fable'
+'use client'
+
 import { Container } from '@sainsburys-tech/grid'
 import { config } from './config'
 import { flags } from '@/flags'
 import { Flags as FlagTypes } from '@/lib/common'
+import { Button } from '@/lib/customs-client' // Add this import for Button
+
 import { getOverride, setOverride } from '@/lib/flags/common'
 import { nextStorage } from '@/lib/flags/server'
 import SetWishlistLocalStorage from '@/lib/localWishlist/setWishlist'
@@ -34,7 +37,7 @@ export default async function Flags() {
     }
   }
 
-  async function clear() {
+  /* export async function clear() {
     'use server'
 
     await setOverride(FlagTypes.HAS_FLAG_UPDATES, 'true', nextStorage)
@@ -42,12 +45,12 @@ export default async function Flags() {
     for (const flag of flatFlags) {
       await setOverride(flag.key, undefined, nextStorage)
     }
-  }
+  } */
 
   if (process.env.OVERRIDE_FLAGS !== 'true') {
     return (
       <div className='ds-p-8'>
-        <Display4>Flags are disabled</Display4>
+        <div>Flags are disabled</div>
         Set the OVERRIDE_FLAGS env var to enable
       </div>
     )
@@ -58,15 +61,9 @@ export default async function Flags() {
       <SetWishlistLocalStorage wishlistType={wishlistType} />
       <form key={Math.random()} action={submit} className='ds-p-8'>
         <div className='ds-sticky ds-top-2 ds-flex'>
-          <Display4>Flags</Display4>
-          <ButtonGroup align='right'>
-            <Button formAction={clear} variant='tertiary' colourScheme='monochrome-dark'>
-              Clear
-            </Button>
-            <Button variant='primary' colourScheme='monochrome-dark'>
-              Apply
-            </Button>
-          </ButtonGroup>
+          <div>Flags</div>
+          <Button variant='secondary'>Clear</Button>
+          <Button variant='primary'>Apply</Button>
         </div>
         <div className='ds-my-4 ds-flex ds-gap-8'>
           {Object.keys(config).flatMap((group) => {
@@ -75,17 +72,17 @@ export default async function Flags() {
               return (
                 <div key={key} className='ds-my-6'>
                   <a href={`#${key}`}>
-                    <Display1>{key}</Display1>
+                    <div>{key}</div>
                   </a>
-                  <Select
-                    name={key}
-                    key={key}
-                    hasHiddenLabel
-                    label={`${key}`}
-                    defaultValue={`${override}`}
-                    options={[...values.map((value) => ({ label: `${value as string}`, value: `${value as string}` }))]}
-                    supportingText={description}
-                  />
+                  <select name={key} key={key} defaultValue={`${override}`}>
+                    <option value={defaultValue}>{defaultValue}</option>
+                    {values.map((value) => (
+                      <option key={value as string} value={value as string}>
+                        {value as string}
+                      </option>
+                    ))}
+                  </select>
+                  <div className='ds-text-muted'>{description}</div>
                   <div>current value: {`${value}`}</div>
                 </div>
               )
@@ -93,7 +90,7 @@ export default async function Flags() {
             return (
               <div key={group}>
                 <a href={`#${group}`}>
-                  <Display3 className='ds-capitalize'>{group}</Display3>
+                  <div className='ds-capitalize'>{group}</div>
                 </a>
                 <div className='ds-max-w-lg'>{children}</div>
                 <hr aria-orientation='horizontal' className='ds-my-8' />
@@ -101,7 +98,7 @@ export default async function Flags() {
             )
           })}
         </div>
-        <Display1>URL</Display1>
+        <div>URL</div>
         <pre className='ds-text-wrap'>
           __flags=
           {encodeURIComponent(

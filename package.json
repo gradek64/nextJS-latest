@@ -55,7 +55,6 @@
   },
   "dependencies": {
     "@sainsburys-tech/design-tokens": "file:.yalc/@sainsburys-tech/design-tokens",
-    "@sainsburys-tech/fable": "^4.10.0",
     "@sainsburys-tech/grid": "file:.yalc/@sainsburys-tech/grid",
     "@sainsburys-tech/icons": "file:.yalc/@sainsburys-tech/icons",
     "@sainsburys-tech/style": "file:.yalc/@sainsburys-tech/style",

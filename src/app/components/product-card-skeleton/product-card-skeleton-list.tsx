@@ -1,4 +1,3 @@
-import { Skeleton } from '@sainsburys-tech/fable'
 import { GridItem, GridWrapper } from '@sainsburys-tech/grid'
 import SkeletonCard from '@/app/components/product-card-skeleton'
 
@@ -21,9 +20,7 @@ const exampleProductCards = Array(4)
 const ProductCardSkeletonList = () => {
   return (
     <>
-      <Skeleton className='ds-mb-4'>
-        <h1>Your Wishlist</h1>
-      </Skeleton>
+      <h1>Your Wishlist</h1>
       <GridWrapper cols={4}>{exampleProductCards}</GridWrapper>
     </>
   )

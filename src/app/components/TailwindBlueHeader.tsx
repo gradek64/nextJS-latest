@@ -32,7 +32,7 @@ const SimpleBlueHeader = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <div className='ds-ml-10 ds-hidden ds-items-baseline ds-space-x-8 md:ds-flex'>
+          <div className='hidden md:flex ml-10 items-baseline space-x-8'>
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -45,7 +45,7 @@ const SimpleBlueHeader = () => {
           </div>
 
           {/* Mobile menu button */}
-          <div className='md:ds-hidden'>
+          <div className='block md:hidden'>
             <button
               onClick={toggleMenu}
               className='ds-rounded-md ds-p-2 ds-text-white ds-transition-all ds-duration-200 hover:ds-bg-blue-700 hover:ds-text-blue-100'

@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { Customs } from 'customs-components'
+import { Customs } from '@/lib/customs-client'
 
 export default function CustomsExamplePage() {
   return (

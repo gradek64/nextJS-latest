@@ -1,5 +1,3 @@
-import { Display1, Display4 } from '@sainsburys-tech/fable'
-
 export default function Attractions() {
   const attractions = [
     {
@@ -26,8 +24,8 @@ export default function Attractions() {
 
   return (
     <div className='ds-container ds-mx-auto ds-px-4 ds-py-8'>
-      <Display4 className='ds-mb-6'>Attractions & Features</Display4>
-      <Display1 className='ds-mb-8'>Discover what makes our app special</Display1>
+      <div className='ds-mb-6'>Attractions & Features</div>
+      <div className='ds-mb-8'>Discover what makes our app special</div>
 
       <div className='ds-grid ds-grid-cols-1 ds-gap-6 md:ds-grid-cols-2'>
         {attractions.map((attraction, index) => (
@@ -44,7 +42,7 @@ export default function Attractions() {
 
       <div className='ds-mt-12 ds-text-center'>
         <div className='ds-bg-blue-50 ds-rounded-lg ds-p-8'>
-          <Display1 className='ds-mb-4'>Ready to Explore?</Display1>
+          <div className='ds-mb-4'>Ready to Explore?</div>
           <p className='ds-text-gray-700 ds-text-lg'>
             Navigate through the menu to explore different sections of our application.
           </p>
